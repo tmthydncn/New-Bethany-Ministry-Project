@@ -1,4 +1,6 @@
 NBM::Application.routes.draw do
+  resources :food_visits
+
   resources :people do
     resources :search
   end
