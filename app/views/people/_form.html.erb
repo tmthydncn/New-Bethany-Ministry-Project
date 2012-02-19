@@ -32,7 +32,7 @@
   <div class="control-group">
     <%= f.label :gender, :class => "control-label"%>
 		<div class="controls">
-    <%= f.text_field :gender, :class => "input-xlarge" %>
+    <%= f.select :gender, Person::GENDER_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
@@ -44,7 +44,7 @@
   <div class="control-group">
     <%= f.label :housing, :class => "control-label"%>
 		<div class="controls">
-    <%= f.text_field :housing, :class => "input-xlarge" %>
+    <%= f.select :housing, Person::HOUSING_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
@@ -62,13 +62,13 @@
   <div class="control-group">
     <%= f.label :ethnicity, :class => "control-label"%>
 		<div class="controls">
-    <%= f.text_field :ethnicity, :class => "input-xlarge" %>
+    <%= f.select :ethnicity, Person::ETHNICITY_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
     <%= f.label :family_type, :class => "control-label"%>
 		<div class="controls">
-    <%= f.text_field :family_type, :class => "input-xlarge" %>
+    <%= f.select :family_type, Person::FAMILY_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
@@ -80,7 +80,7 @@
   <div class="control-group">
     <%= f.label :health_insurance, :class => "control-label"%>
 		<div class="controls">
-    <%= f.check_box :health_insurance, :class => "input-xlarge" %>
+    <%= f.select :health_insurance, Person::INSURANCE_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
