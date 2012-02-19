@@ -1,6 +1,7 @@
 class Person < ActiveRecord::Base
   #need validate here
-  validates :first_name, :last_name, :presence => true;
+  validates :first_name, :last_name, :ssn, :presence => true;
+  has_many :shower_visits, :food_visits, dependent: :destroy
   
   GENDER_TYPES = [ "Male", "Female" ]
   ETHNICITY_TYPES = [ "Hispanic", "African-American", "Caucasian", "Native American", "Other" ]
