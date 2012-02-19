@@ -1,0 +1,65 @@
+<h1>Listing people</h1>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>Fname</th>
+    <th>Mname</th>
+    <th>Lname</th>
+    <th>Gender</th>
+    <th>Ssn</th>
+    <th>Housing</th>
+    <th>Dob</th>
+    <th>Address</th>
+    <th>Ethnicity</th>
+    <th>Familytype</th>
+    <th>Education</th>
+    <th>Health insurance</th>
+    <th>Drug history</th>
+    <th>Criminal background</th>
+    <th>People in house</th>
+    <th>Employment income</th>
+    <th>Ssi</th>
+    <th>Ssd</th>
+    <th>Welfare</th>
+    <th>Other</th>
+    <th>Child support</th>
+    <th>Food stamps</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @people.each do |person| %>
+  <tr>
+    <td><%= person.first_name %></td>
+    <td><%= person.middle_name %></td>
+    <td><%= person.last_name %></td>
+    <td><%= person.gender %></td>
+    <td><%= person.ssn %></td>
+    <td><%= person.housing %></td>
+    <td><%= person.date_of_birth %></td>
+    <td><%= person.address %></td>
+    <td><%= person.ethnicity %></td>
+    <td><%= person.family_type %></td>
+    <td><%= person.education %></td>
+    <td><%= person.health_insurance %></td>
+    <td><%= person.drug_history %></td>
+    <td><%= person.criminal_background %></td>
+    <td><%= person.people_in_house %></td>
+    <td><%= person.employment_income %></td>
+    <td><%= person.ssi %></td>
+    <td><%= person.ssd %></td>
+    <td><%= person.welfare %></td>
+    <td><%= person.other %></td>
+    <td><%= person.child_support %></td>
+    <td><%= person.food_stamps %></td>
+    <td><%= link_to 'Show', person %></td>
+    <td><%= link_to 'Edit', edit_person_path(person) %></td>
+    <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Person', new_person_path %>

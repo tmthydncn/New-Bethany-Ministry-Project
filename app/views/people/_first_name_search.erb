@@ -1,0 +1,38 @@
+<h3>By first name</h3>
+<% if @people_first_name.empty? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+<table class="table table-striped">
+
+	<tr>
+    <th>First name</th>
+    <th>Middle name</th>
+    <th>Last name</th>
+    <th>Gender</th>
+    <th>Ssn</th>
+    <th>Housing</th>
+    <th>Date of birth</th>
+    <th>Address</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @people_first_name.each do |person| %>
+  <tr>
+    <td><%= person.first_name %></td>
+    <td><%= person.middle_name %></td>
+    <td><%= person.last_name %></td>
+    <td><%= person.gender %></td>
+    <td><%= person.ssn %></td>
+    <td><%= person.housing %></td>
+    <td><%= person.date_of_birth %></td>
+    <td><%= person.address %></td>
+    <td><%= link_to 'Show', person %></td>
+    <td><%= link_to 'Edit', edit_person_path(person) %></td>
+    <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+	<% end %>
+</table>
+<%= will_paginate @people_first_name %>
+<% end %>
