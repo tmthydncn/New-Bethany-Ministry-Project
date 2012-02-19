@@ -1,0 +1,31 @@
+<h1>Listing shower_visits</h1>
+
+<table>
+  <tr>
+    <th>Order number</th>
+    <th>Soap</th>
+    <th>Towel</th>
+    <th>Shampoo</th>
+    <th>Other</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shower_visits.each do |shower_visit| %>
+  <tr>
+    <td><%= shower_visit.order_number %></td>
+    <td><%= shower_visit.soap %></td>
+    <td><%= shower_visit.towel %></td>
+    <td><%= shower_visit.shampoo %></td>
+    <td><%= shower_visit.other %></td>
+    <td><%= link_to 'Show', shower_visit %></td>
+    <td><%= link_to 'Edit', edit_shower_visit_path(shower_visit) %></td>
+    <td><%= link_to 'Destroy', shower_visit, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shower visit', new_shower_visit_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  order_number: 1
+  soap: false
+  towel: false
+  shampoo: false
+  other: MyText
+
+two:
+  order_number: 1
+  soap: false
+  towel: false
+  shampoo: false
+  other: MyText

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Order number:</b>
+  <%= @shower_visit.order_number %>
+</p>
+
+<p>
+  <b>Soap:</b>
+  <%= @shower_visit.soap %>
+</p>
+
+<p>
+  <b>Towel:</b>
+  <%= @shower_visit.towel %>
+</p>
+
+<p>
+  <b>Shampoo:</b>
+  <%= @shower_visit.shampoo %>
+</p>
+
+<p>
+  <b>Other:</b>
+  <%= @shower_visit.other %>
+</p>
+
+
+<%= link_to 'Edit', edit_shower_visit_path(@shower_visit) %> |
+<%= link_to 'Back', shower_visits_path %>
