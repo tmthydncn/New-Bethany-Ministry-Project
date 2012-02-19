@@ -1,0 +1,2 @@
+module FoodVisitsHelper
+end

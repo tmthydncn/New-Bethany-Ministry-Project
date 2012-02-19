@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Order number:</b>
+  <%= @food_visit.order_number %>
+</p>
+
+<p>
+  <b>Food in:</b>
+  <%= @food_visit.food_in %>
+</p>
+
+<p>
+  <b>Number of adults:</b>
+  <%= @food_visit.number_of_adults %>
+</p>
+
+<p>
+  <b>Number of children:</b>
+  <%= @food_visit.number_of_children %>
+</p>
+
+<p>
+  <b>Number of elderly:</b>
+  <%= @food_visit.number_of_elderly %>
+</p>
+
+<p>
+  <b>Special needs:</b>
+  <%= @food_visit.special_needs %>
+</p>
+
+
+<%= link_to 'Edit', edit_food_visit_path(@food_visit) %> |
+<%= link_to 'Back', food_visits_path %>
