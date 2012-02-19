@@ -12,3 +12,5 @@ Reception workflow:
 Store workflow:   
 1) Display food tickets refreshes every 15 seconds   
 	.1) Clicks done to confirm processing   
+
+Updated: 19/2  
