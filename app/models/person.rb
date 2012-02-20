@@ -10,4 +10,13 @@ class Person < ActiveRecord::Base
   HOUSING_TYPES = [ "Rent", "Rent-subsidized (housing/Section 8)", "Home owner", "Homeless", "Doubled-up (staying somewhere temporarily)" ]
   FAMILY_TYPES = ["Single (no children)", "2 adults (no children)", "Single parent (w/ children)", "2 parents (w/ children)"]
   
+  def full_name
+    name = self.first_name
+    if not self.middle_name.empty?
+      name << " " << self.middle_name
+    end
+    name << " " << self.last_name
+  end
+  
+
 end

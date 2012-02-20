@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+	<div class="control-group">
+		<%= f.label :person_name %>
+		<%= f.text_field :person_name, :disabled => true, :value => @person.full_name %>
+	</div>
+	
+
   <div class="field">
     <%= f.label :order_number %><br />
     <%= f.number_field :order_number %>

@@ -2,8 +2,9 @@ class FoodVisitsController < ApplicationController
   # GET /food_visits
   # GET /food_visits.json
   def index
-    @food_visits = FoodVisit.all
-
+    session[:person_id] = params[:person_id]
+    @person = current_person
+    @food_visits = FoodVisit.joins(:person).where('people.id = ?', params[:person_id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @food_visits }
@@ -13,8 +14,9 @@ class FoodVisitsController < ApplicationController
   # GET /food_visits/1
   # GET /food_visits/1.json
   def show
+    session[:person_id] = params[:person_id]
     @food_visit = FoodVisit.find(params[:id])
-
+    @person = current_person
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @food_visit }
@@ -25,6 +27,7 @@ class FoodVisitsController < ApplicationController
   # GET /food_visits/new.json
   def new
     @food_visit = FoodVisit.new
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,8 +43,11 @@ class FoodVisitsController < ApplicationController
   # POST /food_visits
   # POST /food_visits.json
   def create
+    session[:person_id] = params[:person_id]
+    @person = current_person
     @food_visit = FoodVisit.new(params[:food_visit])
-
+    @food_visit.person_id = current_person.id
+    
     respond_to do |format|
       if @food_visit.save
         format.html { redirect_to @food_visit, notice: 'Food visit was successfully created.' }
@@ -80,4 +86,6 @@ class FoodVisitsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
 end
