@@ -5,7 +5,7 @@ class FoodVisit < ActiveRecord::Base
   validates_numericality_of :number_of_adults, :greater_than => 0
   
   def owners_full_name
-    Person.find(self[:person_id]).full_name
+    person.full_name
   end
 
 end

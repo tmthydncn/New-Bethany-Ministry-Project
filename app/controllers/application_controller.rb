@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   private
 
     def current_person 
-      session[:person_id] = params[:person_id]
-      Person.find(session[:person_id])
+      #session[:person_id] = params[:person_id]
+      Person.find(params[:person_id])
     rescue ActiveRecord::RecordNotFound
-      session[:person_id] = nil
+      nil
+      #session[:person_id] = nil
     end
 end
