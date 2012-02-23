@@ -5,10 +5,9 @@ class ApplicationController < ActionController::Base
   private
 
     def current_person 
-      flash[:notice] = session[:person_id]
+      session[:person_id] = params[:person_id]
       Person.find(session[:person_id])
     rescue ActiveRecord::RecordNotFound
-      person = nil
       session[:person_id] = nil
     end
 end

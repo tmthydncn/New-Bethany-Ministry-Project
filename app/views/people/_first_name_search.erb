@@ -29,7 +29,7 @@
     <td><%= person.housing %></td>
     <td><%= person.date_of_birth %></td>
     <td><%= person.address %></td>
-		<td><%= button_to 'Add Food Visit', food_visit_path(person_id: person) %></td>
+		<td><%= button_to 'Add Food Visit', search_food_visits_path(person_id: person) %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
@@ -38,5 +38,3 @@
 </table>
 <%= will_paginate @people_first_name %>
 <% end %>
-
-<%= params.inspect %>

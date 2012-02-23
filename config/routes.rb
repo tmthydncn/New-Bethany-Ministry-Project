@@ -1,13 +1,16 @@
 NBM::Application.routes.draw do
   resources :shower_visits
 
-  resources :food_visits
+  resources :food_visits do
+    resources :search
+  end
 
   resources :people do
     resources :search
   end
   
-  match "/search", :to => "people#search"
+  match "/search_people", :to => "people#search"
+  match "/search_food_visits", :to => "food_visits#search"
   
   root to: 'people#search', as: ''
 

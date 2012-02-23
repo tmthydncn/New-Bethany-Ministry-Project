@@ -1,8 +1,9 @@
-<h1>Listing food_visits</h1>
-
+<h1>Listing Food Visits for <%= @person.full_name%></h1>
+<% if @food_visits.nil? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
 <table>
   <tr>
-		<th>Person</th>
     <th>Order number</th>
     <th>Food in</th>
     <th>Number of adults</th>
@@ -16,7 +17,6 @@
 
 <% @food_visits.each do |food_visit| %>
   <tr>
-		<td><%= food_visit.owners_full_name %>
     <td><%= food_visit.order_number %></td>
     <td><%= food_visit.food_in %></td>
     <td><%= food_visit.number_of_adults %></td>
@@ -29,6 +29,7 @@
   </tr>
 <% end %>
 </table>
+<% end %>
 
-<br />
+<%= link_to 'New Food visit', new_food_visit_path(person_id: @person) %>
 

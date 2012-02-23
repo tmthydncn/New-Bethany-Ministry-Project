@@ -2,6 +2,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
+    session[:person_id] = nil
     @people = Person.all
 
     respond_to do |format|

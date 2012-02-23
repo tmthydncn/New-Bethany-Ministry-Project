@@ -13,9 +13,9 @@ class Person < ActiveRecord::Base
   def full_name
     name = self.first_name
     if not self.middle_name.empty?
-      name << " " << self.middle_name
+      name += " " << self.middle_name
     end
-    name << " " << self.last_name
+    name += " " << self.last_name
   end
   
 
