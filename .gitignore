@@ -15,5 +15,5 @@
 /tmp
 
 # Personal data
-/*.tmproj
-/.DS_STORE
+*.tmproj
+.DS_STORE
