@@ -27,59 +27,6 @@ scss:scaffold:
 - --skip
 - --skip-namespace
 - --old-style-hash
-less:assets:
-- --force
-- --pretend
-- --quiet
-- --skip
-- --skip-namespace
-- --old-style-hash
-model:
-- --force
-- --pretend
-- --quiet
-- --skip
-- --skip-namespace
-- --old-style-hash
-- --orm
-resource:
-- --template-engine=
-- --test-framework
-- --helper
-- --assets
-- --force
-- --pretend
-- --quiet
-- --skip
-- --skip-namespace
-- --old-style-hash
-- --orm
-- --force-plural
-- --resource-controller=
-- --actions=
-scaffold:
-- --template-engine=
-- --test-framework
-- --helper
-- --force
-- --pretend
-- --quiet
-- --skip
-- --skip-namespace
-- --old-style-hash
-- --orm
-- --force-plural
-- --stylesheets
-- --stylesheet-engine=
-- --scaffold-controller=
-- --assets
-less:scaffold:
-- --force
-- --pretend
-- --quiet
-- --skip
-- --skip-namespace
-- --old-style-hash
 jquery:install:
 - --force
 - --pretend
@@ -153,6 +100,14 @@ migration:
 - --skip-namespace
 - --old-style-hash
 - --orm
+model:
+- --force
+- --pretend
+- --quiet
+- --skip
+- --skip-namespace
+- --old-style-hash
+- --orm
 observer:
 - --force
 - --pretend
@@ -194,6 +149,37 @@ plugin_new:
 - --full
 - --mountable
 - --skip-gemspec
+resource:
+- --template-engine=
+- --test-framework
+- --helper
+- --assets
+- --force
+- --pretend
+- --quiet
+- --skip
+- --skip-namespace
+- --old-style-hash
+- --orm
+- --force-plural
+- --resource-controller=
+- --actions=
+scaffold:
+- --template-engine=
+- --test-framework
+- --helper
+- --force
+- --pretend
+- --quiet
+- --skip
+- --skip-namespace
+- --old-style-hash
+- --orm
+- --force-plural
+- --stylesheets
+- --stylesheet-engine=
+- --scaffold-controller=
+- --assets
 scaffold_controller:
 - --force
 - --pretend

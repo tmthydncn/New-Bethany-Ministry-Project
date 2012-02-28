@@ -23,7 +23,8 @@ end
 gem 'jquery-rails'
 
 gem 'will_paginate', '~> 3.0'
-gem 'less-rails-bootstrap'
+gem 'sass-rails', '~> 3.2.3'
+gem "bootstrap-sass", "~> 2.0.1"
 gem 'bootstrap-will_paginate'
 
 # To use ActiveModel has_secure_password

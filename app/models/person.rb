@@ -1,6 +1,7 @@
 class Person < ActiveRecord::Base
   #need validate here
   validates :first_name, :last_name, :ssn, :presence => true;
+  validates :ssn, :uniqueness => true
   has_many :shower_visits, dependent: :destroy
   has_many :food_visits, dependent: :destroy
   

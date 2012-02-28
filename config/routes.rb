@@ -12,7 +12,7 @@ NBM::Application.routes.draw do
   match "/search_people", :to => "people#search"
   match "/search_food_visits", :to => "food_visits#search"
   
-  root to: 'people#search', as: ''
+  root to: 'people#search'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -5,8 +5,34 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+	<style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+  </style>
 </head>
 <body>
+	
+	<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+				<%= link_to "NBM", root_path, :class => "brand"%>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><%= link_to "People", search_people_path %></li>
+            <li><%= link_to "Food Visit", food_visit_path %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
 	<% if flash[:warning] or flash[:notice] %>
 	  <div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
 	    <%= flash[:warning] || flash[:notice] %>
@@ -19,9 +45,11 @@
 <%= yield %>
 </div>
 
-
-<%= params.inspect %>
-<%= session.inspect %>
+<div class="container">
+	Session Dump
+	<%= params.inspect %>
+	<%= session.inspect %>
+</div>
 
 </body>
 </html>
