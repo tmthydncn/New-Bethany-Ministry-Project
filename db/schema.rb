@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220221057) do
+ActiveRecord::Schema.define(:version => 20120228033226) do
 
   create_table "food_visits", :force => true do |t|
     t.integer  "order_number"
@@ -20,10 +20,14 @@ ActiveRecord::Schema.define(:version => 20120220221057) do
     t.integer  "number_of_children"
     t.integer  "number_of_elderly"
     t.text     "special_needs"
+    t.integer  "person_id"
+    t.integer  "user_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.integer  "person_id"
   end
+
+  add_index "food_visits", ["person_id"], :name => "index_food_visits_on_person_id"
+  add_index "food_visits", ["user_id"], :name => "index_food_visits_on_user_id"
 
   create_table "people", :force => true do |t|
     t.string   "first_name"
@@ -48,9 +52,13 @@ ActiveRecord::Schema.define(:version => 20120220221057) do
     t.text     "other"
     t.integer  "child_support"
     t.integer  "food_stamps"
+    t.integer  "user_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
+
+  add_index "people", ["ssn"], :name => "index_people_on_ssn", :unique => true
+  add_index "people", ["user_id"], :name => "index_people_on_user_id"
 
   create_table "shower_visits", :force => true do |t|
     t.integer  "order_number"
@@ -58,9 +66,26 @@ ActiveRecord::Schema.define(:version => 20120220221057) do
     t.boolean  "towel"
     t.boolean  "shampoo"
     t.text     "other"
+    t.integer  "person_id"
+    t.integer  "user_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "person_id"
   end
+
+  add_index "shower_visits", ["person_id"], :name => "index_shower_visits_on_person_id"
+  add_index "shower_visits", ["user_id"], :name => "index_shower_visits_on_user_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.boolean  "admin",           :default => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

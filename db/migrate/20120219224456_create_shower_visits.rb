@@ -6,6 +6,9 @@ class CreateShowerVisits < ActiveRecord::Migration
       t.boolean :towel
       t.boolean :shampoo
       t.text :other
+      
+      t.integer :person_id
+      t.integer :user_id
 
       t.timestamps
     end

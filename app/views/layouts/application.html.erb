@@ -27,21 +27,29 @@
           <ul class="nav">
             <li class="active"><a href="#">Home</a></li>
             <li><%= link_to "People", search_people_path %></li>
-            <li><%= link_to "Food Visit", food_visit_path %></li>
+            <li><%= link_to "Food Visit", search_food_visits_path %></li>
+					</ul>
+					<ul class="nav pull-right">
+						<% if signed_in? %>
+						  <li><%= link_to "Sign out", signout_path, method: :delete %></li>
+						<% else %>
+						  <li><%= link_to "Sign in", signin_path %></li>
+						<% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
+
+<div class="container">
 	<% if flash[:warning] or flash[:notice] %>
-	  <div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
+	  <div class="alert alert-warning" <% if flash[:warning] %>class="warning"<% end %>>
 	    <%= flash[:warning] || flash[:notice] %>
 	  </div>
 	  <script type="text/javascript">
 	    setTimeout("new Effect.Fade('notice');", 15000)
 	  </script>
 	<% end %>
-<div class="container">
 <%= yield %>
 </div>
 

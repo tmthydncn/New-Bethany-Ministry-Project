@@ -1,4 +1,5 @@
 class ShowerVisitsController < ApplicationController
+  before_filter :signed_in_user
   # GET /shower_visits
   # GET /shower_visits.json
   def index

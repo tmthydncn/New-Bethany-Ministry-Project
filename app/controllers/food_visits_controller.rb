@@ -1,4 +1,5 @@
 class FoodVisitsController < ApplicationController
+  before_filter :signed_in_user
   # GET /food_visits
   # GET /food_visits.json
   def index
@@ -88,7 +89,7 @@ class FoodVisitsController < ApplicationController
     @person = current_person
     if @person.nil?
       flash[:error] = "Unable to search with no person"
-      redirect_to food_visit_path
+      redirect_to :action=>"index", :controller=>"food_visits"
       return
     end
     @food_visits = FoodVisit.find_all_by_person_id(current_person.id)

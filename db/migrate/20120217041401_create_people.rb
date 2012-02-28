@@ -23,7 +23,9 @@ class CreatePeople < ActiveRecord::Migration
       t.text :other
       t.integer :child_support
       t.integer :food_stamps
-
+      
+      t.integer :user_id
+      
       t.timestamps
     end
   end

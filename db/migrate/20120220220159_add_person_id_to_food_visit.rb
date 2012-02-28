@@ -1,6 +1,6 @@
 class AddPersonIdToFoodVisit < ActiveRecord::Migration
   def self.up
-    add_index :food_visits, :person_id, :integer
+    add_index :food_visits, :person_id
   end
   
   def self.down
