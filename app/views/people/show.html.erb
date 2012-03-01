@@ -110,6 +110,11 @@
   <%= @person.food_stamps %>
 </p>
 
+<p>
+  <b>Created By:</b>
+  <%= User.find(@person.user_id).name %>
+</p>
+
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', search_people_path %>

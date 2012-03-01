@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
       nil
       #session[:person_id] = nil
     end
+    
+    def admin_user
+      if !current_user.admin?
+        flash[:error] = "You do no have administrator privilages"
+        redirect_to(root_path)
+      end
+    end
 end

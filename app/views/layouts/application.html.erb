@@ -28,6 +28,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li><%= link_to "People", search_people_path %></li>
             <li><%= link_to "Food Visit", search_food_visits_path %></li>
+						<li><%= link_to "Users", users_path %></li>
 					</ul>
 					<ul class="nav pull-right">
 						<% if signed_in? %>
@@ -42,14 +43,10 @@
   </div>
 
 <div class="container">
-	<% if flash[:warning] or flash[:notice] %>
-	  <div class="alert alert-warning" <% if flash[:warning] %>class="warning"<% end %>>
-	    <%= flash[:warning] || flash[:notice] %>
-	  </div>
-	  <script type="text/javascript">
-	    setTimeout("new Effect.Fade('notice');", 15000)
-	  </script>
-	<% end %>
+	<% flash.each do |name, msg| %>
+	    <%= content_tag :div, msg, :class => "alert alert-#{name}" %>
+	  <% end %>
+	
 <%= yield %>
 </div>
 

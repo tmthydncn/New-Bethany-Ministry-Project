@@ -1,9 +1,10 @@
 class PeopleController < ApplicationController
   before_filter :signed_in_user
+  before_filter :admin_user,     only: [:create, :destroy]
   # GET /people
   # GET /people.json
   def index
-    session[:person_id] = nil
+    # session[:person_id] = nil
     @people = Person.all
 
     respond_to do |format|
