@@ -2,16 +2,44 @@
 <div class="row">
 <%= form_tag(search_people_path, :method => "get", :class => "well form-search span8") do %>
   <%= label_tag(:query, "Search for:") %>
-  <%= text_field_tag(:query, params[:query], :placeholder => 'First or Last Name',:autofocus => true ) %>
+  <%= text_field_tag(:query, params[:query], :placeholder => 'First or Last Name or SSN',:autofocus => true ) %>
   <%= submit_tag("Search", :class => "btn") %>
 	- or -
 	<%= link_to 'Add a New Person', new_person_path, :class => "btn"%>
 <% end %>
 </div>
 
-<%= render 'first_name_search' %>
+<h3>Result</h3>
+<% if @people.empty? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+<table class="table table-striped">
 
-<hr>
+	<tr>
+    <th>First name</th>
+    <th>Gender</th>
+    <th>Ssn</th>
+    <th>Date of birth</th>
+		<th>Actions:</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<%= render 'last_name_search' %>
+<% @people.each do |person| %>
+  <tr>
+    <td><%= person.full_name %></td>
+    <td><%= person.gender %></td>
+    <td><%= person.formatted_ssn %></td>
+    <td><%= person.date_of_birth %></td>
+		<td><%= link_to 'Add Food Visit', search_food_visits_path(person_id: person), :class => "btn" %></td>
+    <td><%= link_to 'Show', person %></td>
+    <td><%= link_to 'Edit', edit_person_path(person) %></td>
+    <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+	<% end %>
+</table>
+<%= will_paginate @people %>
+<% end %>
+
 
