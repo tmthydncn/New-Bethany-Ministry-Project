@@ -2,8 +2,8 @@
 
 <table class="table table-striped">
   <tr>
+    <th>Order</th>
 		<th>Person</th>
-    <th>Order number</th>
     <th>Food in</th>
     <th>Number of adults</th>
     <th>Number of children</th>
@@ -16,8 +16,8 @@
 
 <% @food_visits.each do |food_visit| %>
   <tr>
-		<td><%= link_to food_visit.owners_full_name, food_visit.person  %>
     <td><%= food_visit.order_number %></td>
+		<td><%= link_to food_visit.owners_full_name, food_visit.person  %>
     <td><%= food_visit.food_in %></td>
     <td><%= food_visit.number_of_adults %></td>
     <td><%= food_visit.number_of_children %></td>
@@ -35,8 +35,8 @@
 
 <table class="table table-striped">
   <tr>
+    <th>Order</th>
 		<th>Person</th>
-    <th>Order number</th>
 		<th>Status</th>
     <th>Food in</th>
     <th>Number of adults</th>
@@ -49,8 +49,8 @@
 
 <% @food_visits_old.each do |food_visit| %>
   <tr>
-		<td><%= link_to food_visit.owners_full_name, food_visit.person %>
     <td><%= food_visit.order_number %></td>
+		<td><%= link_to food_visit.owners_full_name, food_visit.person %>
 		<td><%= food_visit.status %></td>
     <td><%= food_visit.food_in %></td>
     <td><%= food_visit.number_of_adults %></td>

@@ -23,6 +23,7 @@ class FoodVisitsController < ApplicationController
   # GET /food_visits/new
   # GET /food_visits/new.json
   def new
+    @next_order = FoodVisit.find(:first, :order => "updated_at desc").order_number + 1
     @food_visit = FoodVisit.new
     @person = current_person
     if @person.nil?
@@ -48,7 +49,7 @@ class FoodVisitsController < ApplicationController
     
     respond_to do |format|
       if @food_visit.save
-        format.html { redirect_to @food_visit, notice: 'Food visit was successfully created.' }
+        format.html { redirect_to pending_food_visits_path, notice: 'Food visit was successfully created.' }
         format.json { render json: @food_visit, status: :created, location: @food_visit }
       else
         format.html { render action: "new" }
@@ -92,7 +93,7 @@ class FoodVisitsController < ApplicationController
       redirect_to :action=>"index", :controller=>"food_visits"
       return
     end
-    @food_visits = FoodVisit.find_all_by_person_id(current_person.id)
+    @food_visits = FoodVisit.paginate(:page => params[:page], :per_page => 10, :conditions => ["person_id = ?", current_person.id], :order => "updated_at desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @food_visits }
@@ -100,8 +101,8 @@ class FoodVisitsController < ApplicationController
   end   
   
   def pending
-    @food_visits = FoodVisit.find_all_by_status(FoodVisit::STATUS_TYPES[0])
-    @food_visits_old = FoodVisit.find(:all, :order => "updated_at desc", :limit => 5, :conditions => ["status != ?",FoodVisit::STATUS_TYPES[0]]).reverse
+    @food_visits = FoodVisit.find_all_by_status(FoodVisit::STATUS_TYPES[0], :order => "updated_at desc").reverse
+    @food_visits_old = FoodVisit.find(:all, :order => "updated_at desc", :limit => 10, :conditions => ["status != ?",FoodVisit::STATUS_TYPES[0]]).reverse
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @food_visits }
