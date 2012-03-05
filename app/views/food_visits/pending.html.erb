@@ -1,0 +1,66 @@
+<h1>Pending Food Visits</h1>
+
+<table class="table table-striped">
+  <tr>
+		<th>Person</th>
+    <th>Order number</th>
+    <th>Food in</th>
+    <th>Number of adults</th>
+    <th>Number of children</th>
+    <th>Number of elderly</th>
+    <th>Special needs</th>
+    <th>Action</th>
+		<th></th>
+
+  </tr>
+
+<% @food_visits.each do |food_visit| %>
+  <tr>
+		<td><%= link_to food_visit.owners_full_name, food_visit.person  %>
+    <td><%= food_visit.order_number %></td>
+    <td><%= food_visit.food_in %></td>
+    <td><%= food_visit.number_of_adults %></td>
+    <td><%= food_visit.number_of_children %></td>
+    <td><%= food_visit.number_of_elderly %></td>
+    <td><%= food_visit.special_needs %></td>
+    <td><%= link_to 'Completed', processed_food_visit_path(food_visit), :class => "btn" %></td>
+		<td><%= link_to "Edit", edit_food_visit_path(food_visit), :class => "btn" %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<h1>Recently Completed or Canceled</h1>
+
+<table class="table table-striped">
+  <tr>
+		<th>Person</th>
+    <th>Order number</th>
+		<th>Status</th>
+    <th>Food in</th>
+    <th>Number of adults</th>
+    <th>Number of children</th>
+    <th>Number of elderly</th>
+    <th>Special needs</th>
+    <th>Action</th>
+
+  </tr>
+
+<% @food_visits_old.each do |food_visit| %>
+  <tr>
+		<td><%= link_to food_visit.owners_full_name, food_visit.person %>
+    <td><%= food_visit.order_number %></td>
+		<td><%= food_visit.status %></td>
+    <td><%= food_visit.food_in %></td>
+    <td><%= food_visit.number_of_adults %></td>
+    <td><%= food_visit.number_of_children %></td>
+    <td><%= food_visit.number_of_elderly %></td>
+    <td><%= food_visit.special_needs %></td>
+		<td><%= link_to "Edit", edit_food_visit_path(food_visit), :class => "btn" %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

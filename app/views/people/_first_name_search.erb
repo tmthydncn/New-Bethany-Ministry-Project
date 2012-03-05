@@ -6,8 +6,6 @@
 
 	<tr>
     <th>First name</th>
-    <th>Middle name</th>
-    <th>Last name</th>
     <th>Gender</th>
     <th>Ssn</th>
     <th>Date of birth</th>
@@ -19,11 +17,9 @@
 
 <% @people_first_name.each do |person| %>
   <tr>
-    <td><%= person.first_name %></td>
-    <td><%= person.middle_name %></td>
-    <td><%= person.last_name %></td>
+    <td><%= person.full_name %></td>
     <td><%= person.gender %></td>
-    <td><%= "#{person.ssn}".sub(/(\d{3})(\d{2})(\d{4})/, "\\1-\\2-\\3") %></td>
+    <td><%= person.formatted_ssn %></td>
     <td><%= person.date_of_birth %></td>
 		<td><%= link_to 'Add Food Visit', search_food_visits_path(person_id: person), :class => "btn" %></td>
     <td><%= link_to 'Show', person %></td>

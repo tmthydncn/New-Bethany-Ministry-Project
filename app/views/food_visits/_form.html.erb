@@ -48,19 +48,19 @@
   <div class="control-group">
     <%= f.label :number_of_adults, :class => "control-label" %>
     <div class="controls">		
-    <%= f.number_field :number_of_adults, :class => "input-xlarge" %>
+    <%= f.select :number_of_adults, FoodVisit::NUMBER_OF_PEOPLE_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
     <%= f.label :number_of_children, :class => "control-label" %>
     <div class="controls">		
-    <%= f.number_field :number_of_children, :class => "input-xlarge" %>
+    <%= f.select :number_of_children, FoodVisit::NUMBER_OF_PEOPLE_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
     <%= f.label :number_of_elderly, :class => "control-label" %>
     <div class="controls">		
-    <%= f.number_field :number_of_elderly, :class => "input-xlarge" %>
+    <%= f.select :number_of_elderly, FoodVisit::NUMBER_OF_PEOPLE_TYPES,  :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
@@ -69,6 +69,13 @@
     <%= f.text_area :special_needs, :class => "input-xlarge" %>
 		</div>
   </div>
+  <div class="control-group">
+    <%= f.label :status, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.select :status, FoodVisit::STATUS_TYPES, :class => "input-xlarge" %>
+		</div>
+  </div>
+
   <div class="form-actions">
     <%= f.submit :class => "btn btn-primary" %>
 		<%= link_to "Cancel", search_people_path,  :class => "btn" %>

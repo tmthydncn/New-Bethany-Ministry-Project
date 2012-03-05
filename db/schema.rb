@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228033226) do
+ActiveRecord::Schema.define(:version => 20120305202718) do
 
   create_table "food_visits", :force => true do |t|
     t.integer  "order_number"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20120228033226) do
     t.integer  "user_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "status"
   end
 
   add_index "food_visits", ["person_id"], :name => "index_food_visits_on_person_id"

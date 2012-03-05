@@ -57,5 +57,9 @@ class Person < ActiveRecord::Base
     name += " " << self.last_name
   end
   
+  def formatted_ssn
+     "#{self.ssn}".sub(/(\d{3})(\d{2})(\d{4})/, "\\1-\\2-\\3")
+  end
+  
 
 end

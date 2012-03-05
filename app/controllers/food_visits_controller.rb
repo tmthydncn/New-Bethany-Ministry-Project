@@ -99,5 +99,27 @@ class FoodVisitsController < ApplicationController
     end
   end   
   
+  def pending
+    @food_visits = FoodVisit.find_all_by_status(FoodVisit::STATUS_TYPES[0])
+    @food_visits_old = FoodVisit.find(:all, :order => "updated_at desc", :limit => 5, :conditions => ["status != ?",FoodVisit::STATUS_TYPES[0]]).reverse
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @food_visits }
+    end
+  end
+  
+  def processed
+    food_visit = FoodVisit.find(params[:id])
+    
+    respond_to do |format|
+      if food_visit.update_attribute :status, FoodVisit::STATUS_TYPES[1]
+        format.html { redirect_to pending_food_visits_path, success: "Food Visit marked as completed"}
+      else
+        format.html { redirect_to pending_food_visits_path, error: "Unable to mark Food Visit as completed"}
+      end
+      format.json { head :no_content }
+    end
+  end
+  
   
 end
