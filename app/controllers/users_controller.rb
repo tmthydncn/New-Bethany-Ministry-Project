@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user,   only: [:edit, :update]
   # before_filter :admin_user,     only: [:create, :destroy]
-  before_filter :admin_user,     only: [:destroy]
+  before_filter :admin_user,     only: [:new, :create, :destroy]
   # GET /users
   # GET /users.json
   def index
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
+    @prompt = "Create User"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @prompt = "Update User"
   end
 
   # POST /users
@@ -81,11 +82,18 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    if @user.admin? and User.count(:all, :conditions => { :admin => true}) == 1
+      respond_to do |format|
+        format.html { redirect_to @user, notice: 'Unable to last admin user' }
+        format.json { head :no_content }
+      end
+    else
+      @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to users_url }
+        format.json { head :no_content }
+      end
     end
   end
   
@@ -101,7 +109,10 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
+    unless current_user.admin? or current_user?(@user)
+      flash[:error] = "This user is unable to perform the specified action."
+      redirect_to(root_path)
+    end
   end
   
 end

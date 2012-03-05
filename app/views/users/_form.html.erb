@@ -35,7 +35,16 @@
 	    <%= f.password_field :password_confirmation, :class => "input-xlarge" %>
 			</div>
 	  </div>
+		<% if current_user.admin? %>
+			 <div class="control-group">
+		    <%= f.label :admin, :class => "control-label"%>
+				<div class="controls">
+		    <%= f.check_box :admin, :class => "input-xlarge" %>
+				</div>
+		  </div>
+		<% end %>
+	
 	  <div class="form-actions">
-	    <%= f.submit "Sign up",  :class => "btn btn-primary" %>
+	    <%= f.submit @prompt,  :class => "btn btn-primary" %>
 	  </div>
 <% end %>

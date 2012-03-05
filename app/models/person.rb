@@ -33,7 +33,11 @@
 class Person < ActiveRecord::Base
   #need validate here
   validates :first_name, :last_name, :ssn, :presence => true;
-  validates :ssn, :uniqueness => true
+  with_options :allow_blank => true do |v|
+    v.validates_length_of :ssn, :is => 9
+    v.validates_numericality_of :ssn
+    v.validates_uniqueness_of :ssn
+  end
   has_many :shower_visits, dependent: :destroy
   has_many :food_visits, dependent: :destroy
   belongs_to :user

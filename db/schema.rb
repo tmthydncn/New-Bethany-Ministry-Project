@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20120228033226) do
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "gender"
-    t.decimal  "ssn"
+    t.integer  "ssn"
     t.string   "housing"
     t.date     "date_of_birth"
     t.text     "address"
