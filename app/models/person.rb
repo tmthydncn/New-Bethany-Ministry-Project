@@ -42,7 +42,9 @@ class Person < ActiveRecord::Base
   has_many :shower_visits, dependent: :destroy
   has_many :food_visits, dependent: :destroy
   belongs_to :user
-    validates :user_id, presence: true
+  validates :user_id, presence: true
+  
+  attr_protected :user_id
   
   GENDER_TYPES = [ "Male", "Female" ]
   ETHNICITY_TYPES = [ "Hispanic", "African-American", "Caucasian", "Native American", "Other" ]
