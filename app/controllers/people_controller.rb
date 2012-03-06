@@ -77,16 +77,15 @@ class PeopleController < ApplicationController
     if not params[:query].nil?
       query = params[:query].delete(",").split(" ")
     end
-    toQuery = [""]
+    queries = []
+    vars = []
     len = query.length
     query.each_with_index do |q, index|
-      if index == (len - 1)
-        toQuery << "first_name LIKE \"#{q}%\" OR last_name LIKE \"#{q}%\" OR ssn LIKE \"#{q}%\" "
-      else
-        toQuery << "first_name LIKE \"#{q}%\" OR last_name LIKE \"#{q}%\" OR ssn LIKE \"#{q}%\" OR "
-      end
+      queries << "first_name LIKE ? OR last_name LIKE ? OR ssn LIKE ? "
+      vars << (q << '%') << q << q
     end
-      @people = Person.paginate :page => params[:page], :per_page => 5, :conditions => toQuery, :order => "lower(first_name), lower(last_name), ssn"
+  
+      @people = Person.paginate :page => params[:page], :per_page => 5, :conditions =>[queries.join(' AND '), vars].flatten, :order => "lower(first_name), lower(last_name), ssn"
 
     respond_to do |format|
       format.html
