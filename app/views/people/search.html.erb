@@ -22,8 +22,6 @@
     <th>Date of birth</th>
 		<th>Actions:</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @people.each do |person| %>
@@ -33,9 +31,9 @@
     <td><%= person.formatted_ssn %></td>
     <td><%= person.date_of_birth %></td>
 		<td><%= link_to 'Add Food Visit', search_food_visits_path(person_id: person), :class => "btn  btn-mini" %></td>
-    <td><%= link_to 'Show', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', person, :class => "btn btn-mini btn-info" %>
+        <%= link_to 'Edit', edit_person_path(person), :class => "btn btn-mini" %>
+        <%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %></td>
   </tr>
 	<% end %>
 </table>
