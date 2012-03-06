@@ -1,5 +1,5 @@
 <%= form_for(@person, :html => { :class => "form-horizontal"}) do |f| %>
-	<legend>Person Form</legend>
+	<legend>Personal Details</legend>
   <% if @person.errors.any? %>
     <div class="alert alert-error">
       <h4 class="alert-heading"><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h4>
@@ -43,33 +43,15 @@
 		</div>
   </div>
   <div class="control-group">
-    <%= f.label :housing, :class => "control-label"%>
-		<div class="controls">
-    <%= f.select :housing, Person::HOUSING_TYPES, :class => "input-xlarge" %>
-		</div>
-  </div>
-  <div class="control-group">
     <%= f.label :date_of_birth, :class => "control-label"%>
 		<div class="controls">
-    <%= f.date_select :date_of_birth, :class => "input-xlarge" %>
-		</div>
-  </div>
-  <div class="control-group">
-    <%= f.label :address, :class => "control-label"%>
-		<div class="controls">
-    <%= f.text_area :address, :class => "input-xlarge" %>
+    <%= f.date_select :date_of_birth, :order => [:day, :month, :year], :start_year => 1920, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
     <%= f.label :ethnicity, :class => "control-label"%>
 		<div class="controls">
     <%= f.select :ethnicity, Person::ETHNICITY_TYPES, :class => "input-xlarge" %>
-		</div>
-  </div>
-  <div class="control-group">
-    <%= f.label :family_type, :class => "control-label"%>
-		<div class="controls">
-    <%= f.select :family_type, Person::FAMILY_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
@@ -84,16 +66,42 @@
     <%= f.select :health_insurance, Person::INSURANCE_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
+	<div class="row">
+      <div class="span6">
+				<div class="control-group">
+			    <%= f.label :drug_history, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.check_box :drug_history, :class => "input-xlarge" %>
+					</div>
+			  </div>
+		</div>
+		<div class="span6">
+			  <div class="control-group">
+			    <%= f.label :criminal_background, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.check_box :criminal_background, :class => "input-xlarge" %>
+					</div>
+			  </div>
+		</div>
+	</div>
+	<legend>Housing Details</legend>
   <div class="control-group">
-    <%= f.label :drug_history, :class => "control-label"%>
+    <%= f.label :housing, :class => "control-label"%>
 		<div class="controls">
-    <%= f.check_box :drug_history, :class => "input-xlarge" %>
+    <%= f.select :housing, Person::HOUSING_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
-    <%= f.label :criminal_background, :class => "control-label"%>
+    <%= f.label :address, :class => "control-label"%>
 		<div class="controls">
-    <%= f.check_box :criminal_background, :class => "input-xlarge" %>
+    <%= f.text_area :address, :size => "20x10", :class => "input-xlarge" %>
+		</div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :family_type, :class => "control-label"%>
+		<div class="controls">
+    <%= f.select :family_type, Person::FAMILY_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
@@ -102,48 +110,69 @@
     <%= f.number_field :people_in_house, :class => "input-xlarge" %>
 		</div>
   </div>
-  <div class="control-group">
-    <%= f.label :employment_income, :class => "control-label"%>
-		<div class="controls">
-    <%= f.number_field :employment_income, :class => "input-xlarge" %>
+	<legend>Income Details</legend>
+  <div class="row">
+      <div class="span6">
+  			<div class="control-group">
+			    <%= f.label :employment_income, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.number_field :employment_income, :class => "input-xlarge" %>
+					</div>
+			  </div>
+			</div>
+			<div class="span6">
+  			<div class="control-group">
+			    <%= f.label :ssi, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.number_field :ssi, :class => "input-xlarge" %>
+					</div>
+			  </div>
 		</div>
-  </div>
-  <div class="control-group">
-    <%= f.label :ssi, :class => "control-label"%>
-		<div class="controls">
-    <%= f.number_field :ssi, :class => "input-xlarge" %>
+	</div>
+	<div class="row">
+      <div class="span6">
+  			<div class="control-group">
+			    <%= f.label :ssd, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.number_field :ssd, :class => "input-xlarge" %>
+					</div>
+			  </div>
+			</div>
+			<div class="span6">
+			  <div class="control-group">
+			    <%= f.label :child_support, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.number_field :child_support, :class => "input-xlarge" %>
+					</div>
+			  </div>
 		</div>
-  </div>
-  <div class="control-group">
-    <%= f.label :ssd, :class => "control-label"%>
-		<div class="controls">
-    <%= f.number_field :ssd, :class => "input-xlarge" %>
+	</div>
+	<div class="row">
+      <div class="span6">
+			  <div class="control-group">
+			    <%= f.label :food_stamps, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.number_field :food_stamps, :class => "input-xlarge" %>
+					</div>
+			  </div>
+			</div>
+			<div class="span6">
+			  <div class="control-group">
+			    <%= f.label :welfare, :class => "control-label"%>
+					<div class="controls">
+			    <%= f.number_field :welfare, :class => "input-xlarge" %>
+					</div>
+			  </div>
+			</div>
 		</div>
-  </div>
-  <div class="control-group">
-    <%= f.label :welfare, :class => "control-label"%>
-		<div class="controls">
-    <%= f.number_field :welfare, :class => "input-xlarge" %>
-		</div>
-  </div>
+	<legend>Other Details</legend>
   <div class="control-group">
     <%= f.label :other, :class => "control-label"%>
 		<div class="controls">
-    <%= f.text_area :other, :class => "input-xlarge" %>
+    <%= f.text_area :other, :size => "20x10", :class => "input-xlarge" %>
 		</div>
   </div>
-  <div class="control-group">
-    <%= f.label :child_support, :class => "control-label"%>
-		<div class="controls">
-    <%= f.number_field :child_support, :class => "input-xlarge" %>
-		</div>
-  </div>
-  <div class="control-group">
-    <%= f.label :food_stamps, :class => "control-label"%>
-		<div class="controls">
-    <%= f.number_field :food_stamps, :class => "input-xlarge" %>
-		</div>
-  </div>
+
   <div class="form-actions">
     <%= f.submit :class => "btn btn-primary" %>
 		<%= link_to "Cancel", search_people_path,  :class => "btn" %>

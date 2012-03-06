@@ -27,7 +27,12 @@ class FoodVisitsController < ApplicationController
   # GET /food_visits/new.json
   def new
     
-    @next_order = FoodVisit.find(:first, :order => "updated_at desc").order_number + 1
+    @next_order = FoodVisit.find(:first, :order => "updated_at desc")
+    if @next_order.nil? 
+      @next_order = nil
+    else
+      @next_order = @next_order.order_number + 1
+    end
     @food_visit = FoodVisit.new
     @person = current_person
     if @person.nil?

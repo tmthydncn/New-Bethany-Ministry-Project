@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20120305202718) do
 
   create_table "food_visits", :force => true do |t|
     t.integer  "order_number"
-    t.boolean  "food_in"
+    t.string   "food_in"
     t.integer  "number_of_adults"
     t.integer  "number_of_children"
     t.integer  "number_of_elderly"

@@ -31,6 +31,7 @@ class FoodVisit < ActiveRecord::Base
   
   STATUS_TYPES = [ "Pending", "Completed", "Canceled"]
   NUMBER_OF_PEOPLE_TYPES = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+  FOOD_IN_TYPES = [ "Bags", "Boxes" ]
   
   def owners_full_name
     person.full_name

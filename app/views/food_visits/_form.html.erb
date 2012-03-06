@@ -1,5 +1,5 @@
 <%= form_for(@food_visit, :html => {:class => "form-horizontal"}) do |f| %>
-	<legend>Food Visit Form</legend>
+	<legend>Food Visit Details</legend>
   <% if @food_visit.errors.any? %>
     <div class="alert alert-error">
       <h4 class="alert-heading"><%= pluralize(@food_visit.errors.count, "error") %> prohibited this food_visit from being saved:</h4>
@@ -47,7 +47,7 @@
   <div class="control-group">
     <%= f.label :food_in, :class => "control-label" %>
     <div class="controls">		
-    <%= f.check_box :food_in, :class => "input-xlarge" %>
+    <%= f.select :food_in, FoodVisit::FOOD_IN_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
@@ -71,9 +71,10 @@
   <div class="control-group">
     <%= f.label :special_needs, :class => "control-label" %>
     <div class="controls">		
-    <%= f.text_area :special_needs, :class => "input-xlarge" %>
+    <%= f.text_area :special_needs, :size => "20x10", :class => "input-xlarge" %>
 		</div>
   </div>
+	<legend>Status Details</legend>
   <div class="control-group">
     <%= f.label :status, :class => "control-label" %>
     <div class="controls">		
