@@ -125,9 +125,11 @@ class FoodVisitsController < ApplicationController
     
     respond_to do |format|
       if food_visit.update_attribute :status, FoodVisit::STATUS_TYPES[1]
-        format.html { redirect_to pending_food_visits_path, success: "Food Visit marked as completed"}
+        flash[:success] = "Food Visit marked as completed."
+        format.html { redirect_to pending_food_visits_path }
       else
-        format.html { redirect_to pending_food_visits_path, error: "Unable to mark Food Visit as completed"}
+        flash[:error] = "Unable to mark Food Visit as completed."
+        format.html { redirect_to pending_food_visits_path }
       end
       format.json { head :no_content }
     end
