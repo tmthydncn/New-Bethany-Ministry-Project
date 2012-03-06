@@ -77,7 +77,7 @@ class PeopleController < ApplicationController
     if not params[:query].nil?
       query = params[:query].delete(",").split(" ")
     end
-    toQuery = ""
+    toQuery = [""]
     len = query.length
     query.each_with_index do |q, index|
       if index == (len - 1)
