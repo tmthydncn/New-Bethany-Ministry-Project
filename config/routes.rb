@@ -7,18 +7,20 @@ NBM::Application.routes.draw do
     match '/signout', to: 'sessions#destroy', via: :delete
     
 
+
+  
+  match "/search_people", :to => "people#search"
+  match "/search_food_visits", :to => "food_visits#search"
+  match "/pending_food_visits", :to => "food_visits#pending"
+  match "/food_visits/:id/processed", :to => "food_visits#processed", as: "processed_food_visit", via: [:post]
+  
+  root to: 'people#search'
+  
   resources :shower_visits
 
   resources :food_visits
 
   resources :people
-  
-  match "/search_people", :to => "people#search"
-  match "/search_food_visits", :to => "food_visits#search"
-  match "/pending_food_visits", :to => "food_visits#pending"
-  match "/food_visits/:id/processed", :to => "food_visits#processed", as: "processed_food_visit"
-  
-  root to: 'people#search'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
