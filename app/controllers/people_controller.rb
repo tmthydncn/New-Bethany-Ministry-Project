@@ -85,7 +85,7 @@ class PeopleController < ApplicationController
       vars << (q << '%') << q << q
     end
   
-      @people = Person.paginate :page => params[:page], :per_page => 5, :conditions =>[queries.join(' AND '), vars].flatten, :order => "lower(first_name), lower(last_name), ssn"
+      @people = Person.paginate :page => params[:page], :per_page => 5, :conditions =>[queries.join(' OR '), vars].flatten, :order => "lower(first_name), lower(last_name), ssn"
 
     respond_to do |format|
       format.html
