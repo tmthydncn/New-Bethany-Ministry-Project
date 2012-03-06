@@ -50,11 +50,13 @@
 <%= yield %>
 </div>
 
+<% if Rails.env.development? %>
 <div class="container">
 	Session Dump
 	<%= params.inspect %>
 	<%= session.inspect %>
 </div>
+<% end %>
 
 </body>
 </html>
