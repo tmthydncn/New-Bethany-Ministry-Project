@@ -30,6 +30,12 @@
   <%= @food_visit.special_needs %>
 </p>
 
+<p>
+  <b>Created by:</b>
+  <%= User.find(@food_visit.user_id).name %>
+</p>
+
+
 
 <%= link_to 'Edit', edit_food_visit_path(@food_visit) %> |
 <%= link_to 'Back', search_food_visits_path %>

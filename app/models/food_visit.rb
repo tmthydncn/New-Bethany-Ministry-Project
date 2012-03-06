@@ -25,7 +25,8 @@ class FoodVisit < ActiveRecord::Base
   validates_numericality_of :number_of_adults, :greater_than => 0
   validates_presence_of :order_number
   
-  attr_accessible :user_id, :person_id, :order_number, :food_in, :number_of_adults, :number_of_children, :number_of_elderly, :special_needs, :status
+  attr_protected :user_id
+  attr_accessible :person_id, :order_number, :food_in, :number_of_adults, :number_of_children, :number_of_elderly, :special_needs, :status
   
   default_scope order: 'food_visits.created_at DESC'
   
