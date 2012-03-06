@@ -1,6 +1,10 @@
 class PeopleController < ApplicationController
   before_filter :signed_in_user
   before_filter :admin_user,     only: [:create, :destroy]
+  
+  before_filter :title
+
+  
   # GET /people
   # GET /people.json
   def index
@@ -104,4 +108,10 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private 
+    
+    def title
+      @title = "People"
+    end
 end

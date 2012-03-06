@@ -1,6 +1,8 @@
 class FoodVisitsController < ApplicationController
   before_filter :signed_in_user
   before_filter :admin_user,     only: [:create, :destroy]
+  before_filter :title
+
   # GET /food_visits
   # GET /food_visits.json
   def index
@@ -24,6 +26,7 @@ class FoodVisitsController < ApplicationController
   # GET /food_visits/new
   # GET /food_visits/new.json
   def new
+    
     @next_order = FoodVisit.find(:first, :order => "updated_at desc").order_number + 1
     @food_visit = FoodVisit.new
     @person = current_person
@@ -124,5 +127,12 @@ class FoodVisitsController < ApplicationController
     end
   end
   
+  
+  private
+    
+    def title
+      @title = "Food Visits"
+    end
+
   
 end

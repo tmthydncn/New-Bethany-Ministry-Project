@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:edit, :update]
   # before_filter :admin_user,     only: [:create, :destroy]
   before_filter :admin_user,     only: [:new, :create, :destroy]
+  before_filter :title
   # GET /users
   # GET /users.json
   def index
@@ -113,5 +114,11 @@ class UsersController < ApplicationController
       redirect_to(root_path)
     end
   end
+  
+  
+  def title
+    @title = "Users"
+  end
+  
   
 end
