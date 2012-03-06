@@ -1,5 +1,6 @@
 class FoodVisitsController < ApplicationController
   before_filter :signed_in_user
+  before_filter :admin_user,     only: [:create, :destroy]
   # GET /food_visits
   # GET /food_visits.json
   def index
@@ -65,7 +66,7 @@ class FoodVisitsController < ApplicationController
 
     respond_to do |format|
       if @food_visit.update_attributes(params[:food_visit])
-        format.html { redirect_to @food_visit, notice: 'Food visit was successfully updated.' }
+        format.html { redirect_to pending_food_visits_path, notice: 'Food visit was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
