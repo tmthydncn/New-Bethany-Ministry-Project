@@ -58,5 +58,8 @@ module NBM
     
     # Override the original field_with_error tag
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| "#{html_tag}".html_safe }
+    
+    # Setting timezone
+    config.time_zone = 'Eastern Time (US & Canada)'
   end
 end
