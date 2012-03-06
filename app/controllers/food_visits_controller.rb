@@ -94,7 +94,8 @@ class FoodVisitsController < ApplicationController
       redirect_to :action=>"index", :controller=>"food_visits"
       return
     end
-    @food_visits = FoodVisit.paginate(:page => params[:page], :per_page => 10, :conditions => ["person_id = ?", current_person.id], :order => "updated_at desc")
+    
+    @food_visits = FoodVisit.paginate(:page => params[:page], :per_page => 10, :conditions => ["person_id = ?", current_person.id], :order => 'updated_at DESC')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @food_visits }

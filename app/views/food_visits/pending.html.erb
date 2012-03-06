@@ -17,7 +17,7 @@
 <% @food_visits.each do |food_visit| %>
   <tr>
     <td><%= food_visit.order_number %></td>
-		<td><%= link_to food_visit.owners_full_name, food_visit.person  %>
+		<td><%= link_to food_visit.owners_full_name, search_food_visits_path(:person_id => food_visit.person)  %>
     <td><%= food_visit.food_in %></td>
     <td><%= food_visit.number_of_adults %></td>
     <td><%= food_visit.number_of_children %></td>

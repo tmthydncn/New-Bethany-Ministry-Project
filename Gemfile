@@ -30,7 +30,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate', '~> 3.0.3'
 gem 'sass-rails', '~> 3.2.3'
 gem "bootstrap-sass", "~> 2.0.1"
 gem 'bootstrap-will_paginate'
