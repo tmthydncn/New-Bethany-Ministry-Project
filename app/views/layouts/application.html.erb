@@ -28,6 +28,8 @@
             <li <% if @title == "People" %>class="active"<% end %>><%= link_to "People", search_people_path %></li>
             <li <% if @title == "Food Visits" %>class="active"<% end %>><%= link_to "Food Visits", pending_food_visits_path %></li>
 						<li <% if @title == "Users" %>class="active"<% end %>><%= link_to "Users", users_path %></li>
+						<li <% if @title == "Report" %>class="active"<% end %>><%= link_to "Report", report_food_visit_path %></li>
+						
 					</ul>
 					<ul class="nav pull-right">
 						<% if signed_in? %>

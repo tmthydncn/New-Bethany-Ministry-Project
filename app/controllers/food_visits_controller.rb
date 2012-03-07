@@ -59,7 +59,7 @@ class FoodVisitsController < ApplicationController
     @food_visit.user_id = current_user.id
     respond_to do |format|
       if @food_visit.save
-        format.html { redirect_to pending_food_visits_path, notice: 'Food visit was successfully created.' }
+        format.html { redirect_to pending_food_visits_path, success: 'Food visit was successfully created.' }
         format.json { render json: @food_visit, status: :created, location: @food_visit }
       else
         format.html { render action: "new" }

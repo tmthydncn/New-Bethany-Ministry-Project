@@ -1,0 +1,38 @@
+<h1>Search</h1>
+<div class="row">
+<%= form_tag(report_food_visit_path, :method => :post, :class => "well form-search span12") do %>
+  <%= label_tag(:start, "Start Date:") %>
+  <%= date_select(:start, params[:start],:autofocus => true,:order => [:year,:day, :month] ) %>
+	<br />
+	<br />
+	<%= label_tag(:end, "End Date:") %>
+  <%= date_select(:end, params[:end] ,:order => [:year,:day, :month],:default => 1.day.from_now ) %>
+	<br />
+  <%= submit_tag("Search", :class => "btn") %>
+<% end %>
+</div>
+
+<h3>Result</h3>
+<% if @food_visits.nil? or @food_visits.empty? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+<table class="table table-striped">
+	  <tr>
+			<th>Date</th>
+	    <th>Number of adults</th>
+	    <th>Number of children</th>
+	    <th>Number of elderly</th>
+	  </tr>
+
+	<% @food_visits.each do |food_visit| %>
+	  <tr>
+			<td><%= food_visit.created_at.to_date %></td>
+	    <td><%= food_visit.number_of_adults %></td>
+	    <td><%= food_visit.number_of_children %></td>
+	    <td><%= food_visit.number_of_elderly %></td>
+	  </tr>
+	<% end %>
+	</table>
+	<% end %>
+
+	
