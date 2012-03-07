@@ -8,6 +8,7 @@ NBM::Application.routes.draw do
     
 
 
+  match "/report/food_visit", :to => "report#food_visit", :as => "report_food_visit"
   
   match "/search_people", :to => "people#search"
   match "/search_food_visits", :to => "food_visits#search"
