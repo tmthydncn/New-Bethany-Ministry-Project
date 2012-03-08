@@ -31,9 +31,12 @@
 	<% @food_visits.each do |food_visit| %>
 	  <tr>
 			<td><%= food_visit.created_at.to_date %></td>
-	    <td><%= number_of_adults += food_visit.number_of_adults %></td>
-	    <td><%= number_of_children += food_visit.number_of_children %></td>
-	    <td><%= number_of_elderly += food_visit.number_of_elderly %></td>
+	    <td><% number_of_adults += food_visit.number_of_adults %>
+				<%= food_visit.number_of_adults %></td>
+	    <td><% number_of_children += food_visit.number_of_children %>
+				<%= food_visit.number_of_children %></td>
+	    <td><% number_of_elderly += food_visit.number_of_elderly %>
+				<%= food_visit.number_of_elderly %></td>
 	  </tr>
 	<% end %>
 	<tr>

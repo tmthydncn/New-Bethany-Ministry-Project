@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 require 'rake/dsl_definition'
 gem 'rails', '3.2.1'
 gem 'bcrypt-ruby', '3.0.1'
+gem "heroku"
+
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,8 +14,9 @@ group :development do
   gem 'annotate', '~> 2.4.1.beta' 
 end
 
-group :producion do
-  gem "mysql", "~> 2.8.1"
+group :production do
+  #gem "mysql", "~> 2.8.1"
+  gem 'pg'
 end
 
 
