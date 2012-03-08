@@ -17,9 +17,9 @@ class User < ActiveRecord::Base
   has_secure_password
   before_save :create_remember_token
   
-  has_many :people, dependent: :destroy
-  has_many :food_visits, dependent: :destroy
-  has_many :shower_visits, dependent: :destroy
+  has_many :people
+  has_many :food_visits
+  has_many :shower_visits
   
   validates :name, presence: true, length: { maximum: 50 }
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
