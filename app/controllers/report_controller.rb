@@ -18,7 +18,9 @@ class ReportController < ApplicationController
           @query_humanized = "Unable to search. End date must be at least one day after the start date"
         else
           @food_visits = FoodVisit.all( :select => "created_at, SUM(number_of_adults) number_of_adults, SUM(number_of_children) number_of_children, SUM(number_of_elderly) number_of_elderly", :conditions => ["created_at between ? and ? and status = ?", atStart.to_time, atEnd.to_time, FoodVisit::STATUS_TYPES[1]], :group => ["DATE(created_at)"])
-          @query_humanized = "Generating report of #{distance_of_time_in_words(atStart,atEnd)} from #{atStart.to_date} to #{atEnd.to_date}"
+          @food_visits_total = FoodVisit.find(:first, :select => "SUM(number_of_adults) number_of_adults, SUM(number_of_children) number_of_children, SUM(number_of_elderly) number_of_elderly", :conditions => ["created_at between ? and ? and status = ?", atStart.to_time, atEnd.to_time, FoodVisit::STATUS_TYPES[1]])
+          @days = distance_of_time_in_words(atStart,atEnd)
+          @query_humanized = "Generating report of #{@days} from #{atStart.to_date} to #{atEnd.to_date}"
         end
       rescue
         @query_humanized = "Unable to search. Please check the dates"
