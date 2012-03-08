@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-require 'rake/dsl_definition'
 gem 'rails', '3.2.1'
 gem 'bcrypt-ruby', '3.0.1'
 gem "heroku"
