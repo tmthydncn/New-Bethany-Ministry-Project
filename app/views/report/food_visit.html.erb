@@ -25,20 +25,22 @@
 	    <th>Number of children</th>
 	    <th>Number of elderly</th>
 	  </tr>
-
+	<% number_of_adults = 0 %>
+	<% number_of_children = 0 %>
+	<% number_of_elderly = 0 %>	
 	<% @food_visits.each do |food_visit| %>
 	  <tr>
 			<td><%= food_visit.created_at.to_date %></td>
-	    <td><%= food_visit.number_of_adults %></td>
-	    <td><%= food_visit.number_of_children %></td>
-	    <td><%= food_visit.number_of_elderly %></td>
+	    <td><%= number_of_adults += food_visit.number_of_adults %></td>
+	    <td><%= number_of_children += food_visit.number_of_children %></td>
+	    <td><%= number_of_elderly += food_visit.number_of_elderly %></td>
 	  </tr>
 	<% end %>
 	<tr>
 		<th>Total of <%= @days %></th>
-    <th><%= @food_visits_total.number_of_adults %></th>
-    <th><%= @food_visits_total.number_of_children %></th>
-    <th><%= @food_visits_total.number_of_elderly %></th>
+    <th><%= number_of_adults %></th>
+    <th><%= number_of_children %></th>
+    <th><%= number_of_elderly %></th>
   </tr>
 	</table>
 	<% end %>
