@@ -78,7 +78,7 @@ class PeopleController < ApplicationController
   end
   
   def search
-    query = ['%']
+    query = ['']
     if not params[:query].nil?
       query = params[:query].delete(",").split(" ")
     end
