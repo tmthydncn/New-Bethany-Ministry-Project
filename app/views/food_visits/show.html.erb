@@ -32,7 +32,7 @@
 
 <p>
   <b>Created by:</b>
-  <%= User.find(@food_visit.user_id).name %>
+  <%= User.find(@person.user_id).name rescue "A removed user" %>
 </p>
 
 

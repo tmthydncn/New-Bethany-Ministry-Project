@@ -112,7 +112,7 @@
 
 <p>
   <b>Created By:</b>
-  <%= User.find(@person.user_id).name %>
+  	<%= User.find(@person.user_id).name rescue "A removed user" %>
 </p>
 
 

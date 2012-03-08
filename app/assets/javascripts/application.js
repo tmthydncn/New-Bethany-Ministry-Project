@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+
+$(function (){
+ $('#start_date').datepicker();
+ $('#end_date').datepicker();
+});
