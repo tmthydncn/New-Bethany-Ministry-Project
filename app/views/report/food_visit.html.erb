@@ -1,6 +1,6 @@
 <h1>Search</h1>
 <div class="row">
-<%= form_tag(report_food_visit_path, :method => :get, :class => "well form-search span12") do %>
+<%= form_tag(report_food_visit_path, :method => :post, :class => "well form-search span12") do %>
 	<span class="span4">
   <%= label_tag(:start_date, "Start Date:") %>
   <%= text_field_tag(:start_date, params[:start_date], :placeholder => "Pick a starting date")%>
