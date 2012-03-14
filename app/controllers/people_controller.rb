@@ -47,6 +47,7 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
+    params[:person][:date_of_birth] = Date.strptime(params[:person][:date_of_birth], '%Y-%m-%d')
     @person = Person.new(params[:person])
     @person.user_id = current_user.id
 
@@ -65,7 +66,7 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
-
+    params[:person][:date_of_birth] = Date.strptime(params[:person][:date_of_birth], '%Y-%m-%d')
     respond_to do |format|
       if @person.update_attributes(params[:person])
         format.html { redirect_to search_people_path, notice: 'Person was successfully updated.' }

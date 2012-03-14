@@ -44,7 +44,7 @@
   <div class="control-group">
     <%= f.label :date_of_birth, :class => "control-label"%>
 		<div class="controls">
-    <%= f.date_select :date_of_birth, :order => [:day, :month, :year], :start_year => 1920, :class => "input-xlarge" %>
+			<%= f.text_field(:date_of_birth, :placeholder => "Pick a birth date", :class => "input-xlarge")%>
 		</div>
   </div>
   <div class="control-group">

@@ -17,4 +17,5 @@
 $(function (){
  $('#start_date').datepicker();
  $('#end_date').datepicker();
+ $('#person_date_of_birth').datepicker({dateFormat: "yy-mm-dd",  changeYear: true, yearRange: '1940:2020' });
 });
