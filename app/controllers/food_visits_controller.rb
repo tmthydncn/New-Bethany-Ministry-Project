@@ -113,7 +113,7 @@ class FoodVisitsController < ApplicationController
   
   def pending
     @food_visits = FoodVisit.find_all_by_status(FoodVisit::STATUS_TYPES[0])
-    @food_visits_old = FoodVisit.find(:all, :limit => 10, :conditions => ["status != ?",FoodVisit::STATUS_TYPES[0]])
+    @food_visits_old = FoodVisit.find(:all, :limit => 10, :conditions => ["status != ?",FoodVisit::STATUS_TYPES[0]], order: 'food_visits.created_at DESC')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @food_visits }
