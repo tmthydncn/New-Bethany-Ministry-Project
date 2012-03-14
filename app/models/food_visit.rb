@@ -28,7 +28,7 @@ class FoodVisit < ActiveRecord::Base
   attr_protected :user_id
   attr_accessible :person_id, :order_number, :food_in, :number_of_adults, :number_of_children, :number_of_elderly, :special_needs, :status
   
-  default_scope order: 'food_visits.created_at DESC'
+  #default_scope order: 'food_visits.created_at DESC'
   
   STATUS_TYPES = [ "Pending", "Completed", "Canceled"]
   NUMBER_OF_PEOPLE_TYPES = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
