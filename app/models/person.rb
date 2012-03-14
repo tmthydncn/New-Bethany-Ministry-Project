@@ -36,8 +36,9 @@ class Person < ActiveRecord::Base
   with_options :allow_blank => true do |v|
     v.validates_length_of :ssn, :is => 9
     v.validates_numericality_of :ssn
-    v.validates_uniqueness_of :ssn
   end
+  validates :ssn, :uniqueness => true
+  
   validates_numericality_of :people_in_house, :greater_than => 0
   validates_numericality_of :welfare, :ssi, :ssd, :child_support, :employment_income, :food_stamps, :greater_than_or_equal_to => 0
   has_many :shower_visits, dependent: :destroy
