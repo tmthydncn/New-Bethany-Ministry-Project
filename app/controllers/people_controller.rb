@@ -52,7 +52,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
+        format.html { redirect_to search_people_path, notice: 'Person was successfully created.' }
         format.json { render json: @person, status: :created, location: @person }
       else
         format.html { render action: "new" }
@@ -68,7 +68,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+        format.html { redirect_to search_people_path, notice: 'Person was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -86,6 +86,7 @@ class PeopleController < ApplicationController
     vars = []
     len = query.length
     query.each_with_index do |q, index|
+      q = q.downcase
       queries << "first_name LIKE ? OR last_name LIKE ? OR CAST(ssn AS TEXT) LIKE ? "
       vars << (q << '%') << q << q
     end
@@ -105,7 +106,7 @@ class PeopleController < ApplicationController
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to people_url }
+      format.html { redirect_to search_people_path }
       format.json { head :no_content }
     end
   end

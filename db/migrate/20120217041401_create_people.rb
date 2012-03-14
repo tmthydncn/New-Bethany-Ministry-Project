@@ -5,7 +5,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :middle_name
       t.string :last_name
       t.string :gender
-      t.integer :ssn
+      t.string :ssn
       t.string :housing
       t.date :date_of_birth
       t.text :address
