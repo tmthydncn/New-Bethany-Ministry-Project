@@ -88,7 +88,7 @@ class PeopleController < ApplicationController
     len = query.length
     query.each_with_index do |q, index|
       q = q.downcase
-      queries << "first_name LIKE ? OR last_name LIKE ? OR CAST(ssn AS TEXT) LIKE ? "
+      queries << "lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR CAST(ssn AS TEXT) LIKE ? "
       vars << (q << '%') << q << q
     end
   
