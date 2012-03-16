@@ -38,7 +38,7 @@ class ReportController < ApplicationController
       @query_humanized = "Unable to search. Please check the dates"
       @shower_visit = nil
     else
-    #  begin
+      begin
         atStart = Time.strptime(params[:start_date], '%m/%d/%Y').getutc
         atEnd = Time.strptime(params[:end_date], '%m/%d/%Y').getutc
         if atEnd <= atStart
@@ -48,9 +48,9 @@ class ReportController < ApplicationController
           @days = distance_of_time_in_words(atStart,atEnd)
           @query_humanized = "Generating report of #{@days} from #{atStart.to_date} to #{atEnd.to_date}"
         end
-    #  rescue
+      rescue
         @query_humanized = "Unable to search. Please check the dates"
-    #  end
+      end
 
     end
     
