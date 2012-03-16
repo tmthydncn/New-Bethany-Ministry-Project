@@ -32,11 +32,11 @@
 	<% @shower_visits.each do |shower_visit| %>
 	  <tr>
 			<td><%= shower_visit.created_at.to_date %></td>
-	    <td><% soap += shower_visit.soap_count %>
+	    <td><% soap += shower_visit.soap_count.to_i %>
 				<%= shower_visit.soap_count %></td>
-	    <td><% towel += shower_visit.towel_count %>
+	    <td><% towel += shower_visit.towel_count.to_i %>
 				<%= shower_visit.towel_count %></td>
-	    <td><% shampoo += shower_visit.shampoo_count %>
+	    <td><% shampoo += shower_visit.shampoo_count.to_i %>
 				<%= shower_visit.shampoo_count %></td>
 	  </tr>
 		<% day += 1 %>

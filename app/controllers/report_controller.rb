@@ -39,8 +39,8 @@ class ReportController < ApplicationController
       @shower_visit = nil
     else
     #  begin
-        atStart = Time.strptime(params[:start_date], '%m/%d/%Y')
-        atEnd = Time.strptime(params[:end_date], '%m/%d/%Y')
+        atStart = Time.strptime(params[:start_date], '%m/%d/%Y').getutc
+        atEnd = Time.strptime(params[:end_date], '%m/%d/%Y').getutc
         if atEnd <= atStart
           @query_humanized = "Unable to search. End date must be at least one day after the start date"
         else
