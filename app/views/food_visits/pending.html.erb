@@ -1,5 +1,7 @@
 <h1>Pending Food Visits</h1>
-
+<% if @food_visits.nil? %>
+	<blockquote>There are no pending food visits</blockquote>
+<% else %>
 <table class="table table-striped">
   <tr>
     <th>Order</th>
@@ -27,7 +29,7 @@
   </tr>
 <% end %>
 </table>
-
+<% end %>
 <br />
 
 <h1>Recently Completed or Canceled</h1>

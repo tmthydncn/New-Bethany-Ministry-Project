@@ -31,7 +31,8 @@ class FoodVisitsController < ApplicationController
     if @next_order.nil? 
       @next_order = nil
     else
-      @next_order = @next_order.order_number + 1
+      @prev_order = @next_order.order_number
+      @next_order = @prev_order + 1
     end
     @food_visit = FoodVisit.new
     @person = current_person
@@ -75,6 +76,7 @@ class FoodVisitsController < ApplicationController
 
     respond_to do |format|
       if @food_visit.update_attributes(params[:food_visit])
+        @food_visit.update_attribute(:user_id,current_user.id)
         format.html { redirect_to pending_food_visits_path, notice: 'Food visit was successfully updated.' }
         format.json { head :no_content }
       else

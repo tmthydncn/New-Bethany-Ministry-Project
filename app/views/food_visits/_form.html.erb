@@ -38,9 +38,10 @@
     <div class="controls">		
 		<% if @next_order.nil? %>
 		   <%= f.number_field :order_number, :class => "input-xlarge" %>
+			<span class="help-inline">There was no previous order</span>
 		<% else %>
     	<%= f.number_field :order_number, :value => @next_order, :class => "input-xlarge" %>
-			<span class="help-inline">The previous order was numbered <%= @next_order - 1 %></span>
+			<span class="help-inline">The previous order was numbered <%= @prev_order %></span>
 		<% end %>
 		</div>
   </div>
@@ -81,6 +82,15 @@
     <%= f.select :status, FoodVisit::STATUS_TYPES, :class => "input-xlarge" %>
 		</div>
   </div>
+	<% unless @food_visit.user_id.nil? %>
+	<div class="control-group">
+		<%= f.label :created_by, :class => "control-label" %>
+		<div class="controls">
+				<%= f.text_field :created_by, :disabled => true, :value => @food_visit.user.name, :class => "input-xlarge" %>
+
+		</div>
+	</div>
+	<% end %>
 
   <div class="form-actions">
     <%= f.submit :class => "btn btn-primary" %>

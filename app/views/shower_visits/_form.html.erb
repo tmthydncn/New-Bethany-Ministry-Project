@@ -1,7 +1,8 @@
-<%= form_for(@shower_visit) do |f| %>
+<%= form_for(@shower_visit, :html => {:class => "form-horizontal"}) do |f| %>
+	<legend>Shower Visit Details</legend>
   <% if @shower_visit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shower_visit.errors.count, "error") %> prohibited this shower_visit from being saved:</h2>
+		<div class="alert alert-error">
+      <h4 class="alert-heading"><%= pluralize(@shower_visit.errors.count, "error") %> prohibited this shower_visit from being saved:</h4>
 
       <ul>
       <% @shower_visit.errors.full_messages.each do |msg| %>
@@ -11,27 +12,79 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :order_number %><br />
-    <%= f.number_field :order_number %>
+	<% if @shower_visit.person_id.nil? %>
+		<%= f.hidden_field :person_id , :value => @person.id %>
+	<% else %>
+		<%= f.hidden_field :person_id , :value => @shower_visit.person_id %>
+	<% end %>
+	
+	<div class="control-group">
+		<%= f.label :person_name, :class => "control-label" %>
+		<div class="controls">
+			
+			<% if @shower_visit.person_id.nil? %>	
+				<%= f.text_field :person_name, :disabled => true, :value => @person.full_name, :class => "input-xlarge" %>
+			<% else %>
+				<%= f.text_field :person_name, :disabled => true, :value => @shower_visit.owners_full_name, :class => "input-xlarge" %>
+			<% end %>
+			
+		</div>
+	</div>
+
+  <div class="control-group">
+    <%= f.label :order_number, :class => "control-label" %>
+    <div class="controls">		
+		<% if @next_order.nil? %>
+		   <%= f.number_field :order_number, :class => "input-xlarge" %>
+			<span class="help-inline">There was no previous order</span>
+		<% else %>
+    	<%= f.number_field :order_number, :value => @next_order, :class => "input-xlarge" %>
+			<span class="help-inline">The previous order was numbered <%= @prev_order %></span>
+		<% end %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :soap %><br />
-    <%= f.check_box :soap %>
+  <div class="control-group">
+    <%= f.label :soap, :class => "control-label"  %>
+    <div class="controls">		
+    <%= f.check_box :soap, :class => "input-xlarge" %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :towel %><br />
-    <%= f.check_box :towel %>
+  <div class="control-group">
+    <%= f.label :towel, :class => "control-label"  %>
+		<div class="controls">
+    <%= f.check_box :towel, :class => "input-xlarge" %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :shampoo %><br />
-    <%= f.check_box :shampoo %>
+  <div class="control-group">
+    <%= f.label :shampoo, :class => "control-label"  %>
+		<div class="controls">
+    <%= f.check_box :shampoo, :class => "input-xlarge" %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :other %><br />
-    <%= f.text_area :other %>
+  <div class="control-group">
+    <%= f.label :other, :class => "control-label"  %>
+		<div class="controls">
+    <%= f.text_area :other, :size => "20x10", :class => "input-xlarge" %>
+		</div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+	<legend>Status Details</legend>
+  <div class="control-group">
+    <%= f.label :status, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.select :status, ShowerVisit::STATUS_TYPES, :class => "input-xlarge" %>
+		</div>
+  </div>
+	<% unless @shower_visit.user_id.nil? %>
+	<div class="control-group">
+		<%= f.label :created_by, :class => "control-label" %>
+		<div class="controls">
+				<%= f.text_field :created_by, :disabled => true, :value => @shower_visit.user.name, :class => "input-xlarge" %>
+
+		</div>
+	</div>
+	<% end %>
+  <div class="form-actions">
+    <%= f.submit :class => "btn btn-primary" %>
+		<%= link_to "Cancel", pending_shower_visits_path,  :class => "btn" %>
   </div>
 <% end %>

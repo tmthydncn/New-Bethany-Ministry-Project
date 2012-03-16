@@ -1,0 +1,52 @@
+<h1>Generate Shower Visit Report</h1>
+<div class="row">
+<%= form_tag(report_shower_visit_path, :method => :get, :class => "well form-search span12") do %>
+	<span class="span4">
+  <%= label_tag(:start_date, "Start Date:") %>
+  <%= text_field_tag(:start_date, params[:start_date], :placeholder => "Pick a starting date")%>
+	</span><span class="span4">
+	<%= label_tag(:end_date, "End Date:") %>
+  <%= text_field_tag(:end_date, params[:end_date], :placeholder => "Pick an ending date")%>
+	</span>
+  <%= submit_tag("Search", :class => "btn") %>
+<% end %>
+</div>
+
+<h3>Report</h3>
+<h5><%= @query_humanized unless @query_humanized.nil? %></h5>
+<% if @shower_visits.nil? or @shower_visits.empty? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+
+<table class="table table-striped">
+	  <tr>
+			<th>Date</th>
+	    <th>Number of soap</th>
+	    <th>Number of towel</th>
+	    <th>Number of shampoo</th>
+	  </tr>
+	<% day = 0 %>
+	<% soap = 0 %>
+	<% towel = 0 %>
+	<% shampoo = 0 %>	
+	<% @shower_visits.each do |shower_visit| %>
+	  <tr>
+			<td><%= shower_visit.created_at.to_date %></td>
+	    <td><% soap += shower_visit.soap_count %>
+				<%= shower_visit.soap_count %></td>
+	    <td><% towel += shower_visit.towel_count %>
+				<%= shower_visit.towel_count %></td>
+	    <td><% shampoo += shower_visit.shampoo_count %>
+				<%= shower_visit.shampoo_count %></td>
+	  </tr>
+		<% day += 1 %>
+	<% end %>
+	<tr>
+		<th>Total of active <%= pluralize(day, "day") %></th>
+    <th><%= soap %></th>
+    <th><%= towel %></th>
+    <th><%= shampoo %></th>
+  </tr>
+	</table>
+	<% end %>
+

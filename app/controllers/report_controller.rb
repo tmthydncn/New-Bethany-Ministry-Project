@@ -33,7 +33,32 @@ class ReportController < ApplicationController
     end
   end
   
-  
+  def shower_visit
+    if params[:start_date].nil? or params[:start_date].empty? or params[:end_date].empty?
+      @query_humanized = "Unable to search. Please check the dates"
+      @shower_visit = nil
+    else
+    #  begin
+        atStart = Time.strptime(params[:start_date], '%m/%d/%Y').getutc
+        atEnd = Time.strptime(params[:end_date], '%m/%d/%Y').getutc
+        if atEnd <= atStart
+          @query_humanized = "Unable to search. End date must be at least one day after the start date"
+        else
+          @shower_visits = ShowerVisit.all( :select => "DATE(created_at) as created_at, SUM(CAST(soap AS int)) as soap_count, SUM(CAST(towel AS int)) as towel_count, SUM(CAST(shampoo AS int)) as shampoo_count", :conditions => ["created_at between ? and ? and status = ?", atStart.to_time, atEnd.to_time, ShowerVisit::STATUS_TYPES[1]], :group => ["DATE(created_at)"])
+          @days = distance_of_time_in_words(atStart,atEnd)
+          @query_humanized = "Generating report of #{@days} from #{atStart.to_date} to #{atEnd.to_date}"
+        end
+    #  rescue
+        @query_humanized = "Unable to search. Please check the dates"
+    #  end
+
+    end
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @shower_visits }
+    end
+  end  
   private 
     
     def title

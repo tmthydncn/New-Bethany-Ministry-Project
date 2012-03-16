@@ -31,9 +31,22 @@
           <ul class="nav">
             <li <% if @title == "People" %>class="active"<% end %>><%= link_to "People", search_people_path %></li>
             <li <% if @title == "Food Visits" %>class="active"<% end %>><%= link_to "Food Visits", pending_food_visits_path %></li>
+						<li <% if @title == "Shower Visits" %>class="active"<% end %>><%= link_to "Shower Visits", pending_shower_visits_path %></li>
 						<li <% if @title == "Users" %>class="active"<% end %>><%= link_to "Users", users_path %></li>
-						<li <% if @title == "Report" %>class="active"<% end %>><%= link_to "Report", report_food_visit_path %></li>
-						
+						<ul class="nav">
+						  <li class="dropdown <% if @title == "Report" %>active<% end %> ">
+						    <a href="#"
+						          class="dropdown-toggle"
+						          data-toggle="dropdown">
+						          Report
+						          <b class="caret"></b>
+						    </a>
+						    <ul class="dropdown-menu">
+						      <li><%= link_to "Food Visit", report_food_visit_path %></li>
+									<li><%= link_to "Shower Visit", report_shower_visit_path %></li>
+						    </ul>
+						  </li>
+						</ul>
 					</ul>
 					<ul class="nav pull-right">
 						<% if signed_in? %>

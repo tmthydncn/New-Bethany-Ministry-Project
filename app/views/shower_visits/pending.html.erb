@@ -1,0 +1,64 @@
+<h1>Pending Shower Visits</h1>
+<% if @shower_visits.nil? %>
+	<blockquote>There are no pending shower visits</blockquote>
+<% else %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Order</th>
+		<th>Person</th>
+    <th>Soap</th>
+    <th>Towel</th>
+    <th>Shampoo</th>
+    <th>Other</th>
+    <th>Action</th>
+
+  </tr>
+
+<% @shower_visits.each do |shower_visit| %>
+  <tr>
+    <td><%= shower_visit.order_number %></td>
+		<td><%= link_to shower_visit.owners_full_name, search_shower_visits_path(:person_id => shower_visit.person)  %>
+    <td><%= shower_visit.soap %></td>
+    <td><%= shower_visit.towel %></td>
+    <td><%= shower_visit.shampoo %></td>
+    <td><%= shower_visit.other %></td>
+    <td><%= link_to 'Completed', processed_shower_visit_path(shower_visit), :class => "btn btn-mini btn-success", :method => :post %>
+	<%= link_to "Edit", edit_shower_visit_path(shower_visit), :class => "btn btn-mini" %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+<br />
+
+<h1>Recently Completed or Canceled</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Order</th>
+		<th>Person</th>
+		<th>Status</th>
+    <th>Soap</th>
+    <th>Towel</th>
+    <th>Shampoo</th>
+    <th>Other</th>
+    <th>Action</th>
+
+  </tr>
+
+<% @shower_visits_old.each do |shower_visit| %>
+  <tr>
+    <td><%= shower_visit.order_number %></td>
+		<td><%= link_to shower_visit.owners_full_name, shower_visit.person %>
+		<td><%= shower_visit.status %></td>
+    <td><%= shower_visit.soap %></td>
+    <td><%= shower_visit.towel %></td>
+    <td><%= shower_visit.shampoo %></td>
+    <td><%= shower_visit.other %></td>
+		<td><%= link_to "Edit", edit_shower_visit_path(shower_visit), :class => "btn btn-mini" %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

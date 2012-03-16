@@ -1,0 +1,34 @@
+<h1>Listing Shower Visits for <%= @person.full_name%></h1>
+<br />
+<h6><%= link_to 'Create a new Shower visit', new_shower_visit_path(person_id: @person), :class => "btn" %>
+</h6><br />
+<% if @shower_visits.nil? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+<table class="table table-striped">
+  <tr>
+		<th>Date</th>
+    <th>Order number</th>
+    <th>Soap</th>
+    <th>Towel</th>
+    <th>Shampoo</th>
+    <th>Other</th>
+    <th></th>
+  </tr>
+
+<% @shower_visits.each do |shower_visit| %>
+  <tr>
+		<td><%= simple_format shower_visit.updated_time_with_count %></td>
+    <td><%= shower_visit.order_number %></td>
+    <td><%= shower_visit.soap %></td>
+    <td><%= shower_visit.towel %></td>
+    <td><%= shower_visit.shampoo %></td>
+    <td><%= shower_visit.other %></td>
+    <td><%= link_to 'Edit', edit_shower_visit_path(shower_visit), :class => 'btn btn-mini'%>
+					<%= link_to 'Destroy', shower_visit, confirm: 'Are you sure?', method: :delete, :class => 'btn  btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @shower_visits %>
+<% end %>
+

@@ -1,4 +1,4 @@
-<h1>Search</h1>
+<h1>Generate Food Visits Report</h1>
 <div class="row">
 <%= form_tag(report_food_visit_path, :method => :get, :class => "well form-search span12") do %>
 	<span class="span4">
@@ -25,6 +25,7 @@
 	    <th>Number of children</th>
 	    <th>Number of elderly</th>
 	  </tr>
+	<% day = 0 %>
 	<% number_of_adults = 0 %>
 	<% number_of_children = 0 %>
 	<% number_of_elderly = 0 %>	
@@ -38,9 +39,10 @@
 	    <td><% number_of_elderly += food_visit.number_of_elderly %>
 				<%= food_visit.number_of_elderly %></td>
 	  </tr>
+		<% day += 1 %>
 	<% end %>
 	<tr>
-		<th>Total of <%= @days %></th>
+		<th>Total of active <%= pluralize(day, "day") %></th>
     <th><%= number_of_adults %></th>
     <th><%= number_of_children %></th>
     <th><%= number_of_elderly %></th>
