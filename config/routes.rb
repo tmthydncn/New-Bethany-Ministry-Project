@@ -22,7 +22,7 @@ NBM::Application.routes.draw do
   
   root to: 'people#search'
   
-  resources :shower_visits
+  resources :shower_visits, only: [:new, :edit, :create, :update, :destroy]
 
   resources :food_visits, only: [:new, :edit, :create, :update, :destroy]
 

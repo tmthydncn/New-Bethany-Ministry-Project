@@ -56,6 +56,7 @@
     <td><%= shower_visit.shampoo %></td>
     <td><%= shower_visit.other %></td>
 		<td><%= link_to "Edit", edit_shower_visit_path(shower_visit), :class => "btn btn-mini" %>
+			<%= link_to 'Destroy', shower_visit, confirm: 'Are you sure?', method: :delete, :class => 'btn  btn-mini btn-danger' %>
   </tr>
 <% end %>
 </table>
