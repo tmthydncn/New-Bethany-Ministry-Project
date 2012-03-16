@@ -38,19 +38,19 @@ class ReportController < ApplicationController
       @query_humanized = "Unable to search. Please check the dates"
       @shower_visit = nil
     else
-      begin
-        atStart = Time.strptime(params[:start_date], '%m/%d/%Y').getutc
-        atEnd = Time.strptime(params[:end_date], '%m/%d/%Y').getutc
+    #  begin
+        atStart = Time.strptime(params[:start_date], '%m/%d/%Y')
+        atEnd = Time.strptime(params[:end_date], '%m/%d/%Y')
         if atEnd <= atStart
           @query_humanized = "Unable to search. End date must be at least one day after the start date"
         else
-          @shower_visits = ShowerVisit.all( :select => "DATE(created_at) as created_at, SUM(CAST(soap AS int)) as soap_count, SUM(CAST(towel AS int)) as towel_count, SUM(CAST(shampoo AS int)) as shampoo_count", :conditions => ["created_at between ? and ? and status = ?", atStart.to_time, atEnd.to_time, ShowerVisit::STATUS_TYPES[1]], :group => ["DATE(created_at)"])
+          @shower_visits = ShowerVisit.all( :select => "DATE(created_at) as created_at, COUNT(CASE WHEN soap THEN 1 ELSE null END) as soap_count, COUNT(CASE WHEN towel THEN 1 ELSE null END) as towel_count, Count(CASE WHEN shampoo THEN 1 ELSE null END) as shampoo_count", :conditions => ["created_at between ? and ? and status = ?", atStart.to_time, atEnd.to_time, ShowerVisit::STATUS_TYPES[1]], :group => ["DATE(created_at)"])
           @days = distance_of_time_in_words(atStart,atEnd)
           @query_humanized = "Generating report of #{@days} from #{atStart.to_date} to #{atEnd.to_date}"
         end
-      rescue
+    #  rescue
         @query_humanized = "Unable to search. Please check the dates"
-      end
+    #  end
 
     end
     
