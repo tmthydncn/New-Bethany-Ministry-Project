@@ -82,6 +82,13 @@
 
 		</div>
 	</div>
+	<div class="control-group">
+		<%= f.label "Date Created", :class => "control-label" %>
+		<div class="controls">
+				<%= f.text_field "Date Created", :disabled => true, :value => @shower_visit.created_at, :class => "input-xlarge" %>
+
+		</div>
+	</div>
 	<% end %>
   <div class="form-actions">
     <%= f.submit :class => "btn btn-primary" %>

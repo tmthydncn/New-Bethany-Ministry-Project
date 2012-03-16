@@ -1,5 +1,5 @@
 <h1>Pending Shower Visits</h1>
-<% if @shower_visits.nil? %>
+<% if @shower_visits.nil? or @shower_visits.empty? %>
 	<blockquote>There are no pending shower visits</blockquote>
 <% else %>
 
