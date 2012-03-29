@@ -1,0 +1,36 @@
+<h1>Listing Basket Visits for <%= @person.full_name%></h1>
+<br />
+<h6><%= link_to 'Create a new Basket visit', new_basket_visit_path(person_id: @person), :class => "btn" %>
+</h6><br />
+<% if @basket_visits.nil? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+<table class="table table-striped">
+  <tr>
+		<th>Date</th>
+    <th>Order number</th>
+    <th>Food in</th>
+    <th>Number<br />of adults</th>
+    <th>Number<br />of children</th>
+    <th>Number<br />of elderly</th>
+    <th>Special needs</th>
+    <th></th>
+  </tr>
+
+<% @basket_visits.each do |basket_visit| %>
+  <tr>
+		<td><%= simple_format basket_visit.updated_time_with_count %></td>
+    <td><%= basket_visit.order_number %></td>
+    <td><%= basket_visit.basket_in %></td>
+    <td><%= basket_visit.number_of_adults %></td>
+    <td><%= basket_visit.number_of_children %></td>
+    <td><%= basket_visit.number_of_elderly %></td>
+    <td><%= basket_visit.special_needs %></td>
+    <td><%= link_to 'Edit', edit_basket_visit_path(basket_visit), :class => 'btn btn-mini'%>
+					<%= link_to 'Destroy', basket_visit, confirm: 'Are you sure?', method: :delete, :class => 'btn  btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @basket_visits %>
+<% end %>
+

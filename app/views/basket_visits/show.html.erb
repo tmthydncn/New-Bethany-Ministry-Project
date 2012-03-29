@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Order number:</b>
+  <%= @basket_visit.order_number %>
+</p>
+
+<p>
+  <b>Food in:</b>
+  <%= @basket_visit.basket_in %>
+</p>
+
+<p>
+  <b>Number of adults:</b>
+  <%= @basket_visit.number_of_adults %>
+</p>
+
+<p>
+  <b>Number of children:</b>
+  <%= @basket_visit.number_of_children %>
+</p>
+
+<p>
+  <b>Number of elderly:</b>
+  <%= @basket_visit.number_of_elderly %>
+</p>
+
+<p>
+  <b>Special needs:</b>
+  <%= @basket_visit.special_needs %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= User.find(@person.user_id).name rescue "A removed user" %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_basket_visit_path(@basket_visit) %> |
+<%= link_to 'Back', search_basket_visits_path %>

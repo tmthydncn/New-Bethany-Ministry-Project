@@ -31,6 +31,8 @@
 #
 
 class Person < ActiveRecord::Base
+  require 'crypt/blowfish'
+  SSN_KEY = "We Sh0uld Make Th1s Harder"
   #need validate here
   validates :first_name, :last_name, :ssn, :presence => true;
   with_options :allow_blank => true do |v|
@@ -48,6 +50,8 @@ class Person < ActiveRecord::Base
   
   attr_protected :user_id
   
+  #after_validation :encrypt_ssn
+  
   GENDER_TYPES = [ "Male", "Female" ]
   ETHNICITY_TYPES = [ "Hispanic", "African-American", "Caucasian", "Native American", "Other" ]
   INSURANCE_TYPES = [ "Yes - Private", "Yes - Medicaid (Access)", "Yes - Medicare", "No" ]
@@ -63,8 +67,22 @@ class Person < ActiveRecord::Base
   end
   
   def formatted_ssn
-     "#{self.ssn}".sub(/(\d{3})(\d{2})(\d{4})/, "\\1-\\2-\\3")
+    # "#{decrypt_ssn}".sub(/(\d{3})(\d{2})(\d{4})/, "\\1-\\2-\\3")
+    "#{self.ssn}".sub(/(\d{3})(\d{2})(\d{4})/, "\\1-\\2-\\3")
   end
   
+  
+  #def decrypt_ssn
+  #  rijndael = Crypt::Blowfish.new(SSN_KEY)
+  #  self.ssn = rijndael.decrypt_string(self.ssn)   
+  #end
+  
+  #private
+  #  def encrypt_ssn
+  #    rijndael = Crypt::Blowfish.new(SSN_KEY)
+  #    puts "Hello worl " << self.ssn.encoding.name  << "   " << rijndael.encrypt_string(self.ssn).to_s.force_encoding("utf-8")
+  #    self.ssn = rijndael.encrypt_string(self.ssn).force_encoding("utf-8")
+      #self.ssn = rijndael.encrypt_string(self.ssn)
+  #  end
 
 end

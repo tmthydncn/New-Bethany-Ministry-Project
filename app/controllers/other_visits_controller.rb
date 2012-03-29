@@ -1,0 +1,104 @@
+class OtherVisitsController < ApplicationController
+  before_filter :signed_in_user
+  before_filter :admin_user,     only: [:create, :destroy]
+  before_filter :title
+
+  # GET /other_visits
+  # GET /other_visits.json
+  def index
+    @other_visits = OtherVisit.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @other_visits }
+    end
+  end
+
+  # GET /other_visits/1
+  # GET /other_visits/1.json
+  def show
+    @other_visit = OtherVisit.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @other_visit }
+    end
+  end
+
+  # GET /other_visits/new
+  # GET /other_visits/new.json
+  def new
+    @other_visit = OtherVisit.new
+    @person = current_person
+    if @person.nil?
+      flash[:error] = "Unable to create new with no person"
+      redirect_to search_people_url
+      return
+    end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @other_visit }
+    end
+  end
+
+  # GET /other_visits/1/edit
+  def edit
+    @other_visit = OtherVisit.find(params[:id])
+  end
+
+  # POST /other_visits
+  # POST /other_visits.json
+  def create
+
+    @other_visit = OtherVisit.new(params[:other_visit])
+    @other_visit.user_id = current_user.id
+    respond_to do |format|
+      if @other_visit.save
+        format.html { redirect_to pending_other_visits_path, success: 'Other visit was successfully created.' }
+        format.json { render json: @other_visit, status: :created, location: @other_visit }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @other_visit.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /other_visits/1
+  # PUT /other_visits/1.json
+  def update
+    @other_visit = OtherVisit.find(params[:id])
+
+    respond_to do |format|
+      if @other_visit.update_attributes(params[:other_visit])
+        @other_visit.update_attribute(:user_id,current_user.id)
+        format.html { redirect_to pending_other_visits_path, notice: 'Other visit was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @other_visit.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /other_visits/1
+  # DELETE /other_visits/1.json
+  def destroy
+    @other_visit = OtherVisit.find(params[:id])
+    @other_visit.destroy
+
+    respond_to do |format|
+      format.html { redirect_to other_visits_url }
+      format.json { head :no_content }
+    end
+  end
+  
+  
+  
+  
+
+  private
+
+    def title
+      @title = "Other Visits"
+    end
+
+
+end

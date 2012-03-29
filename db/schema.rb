@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316014851) do
+ActiveRecord::Schema.define(:version => 20120329215759) do
 
-  create_table "food_visits", :force => true do |t|
+  create_table "basket_visits", :force => true do |t|
     t.integer  "order_number"
     t.string   "food_in"
     t.integer  "number_of_adults"
@@ -27,8 +27,26 @@ ActiveRecord::Schema.define(:version => 20120316014851) do
     t.string   "status"
   end
 
-  add_index "food_visits", ["person_id"], :name => "index_food_visits_on_person_id"
-  add_index "food_visits", ["user_id"], :name => "index_food_visits_on_user_id"
+  add_index "basket_visits", ["person_id"], :name => "index_food_visits_on_person_id"
+  add_index "basket_visits", ["user_id"], :name => "index_food_visits_on_user_id"
+
+  create_table "food_visits", :force => true do |t|
+    t.integer  "order_number"
+    t.integer  "person_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "status"
+  end
+
+  create_table "other_visits", :force => true do |t|
+    t.string   "visit_type"
+    t.integer  "person_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "status"
+  end
 
   create_table "people", :force => true do |t|
     t.string   "first_name"

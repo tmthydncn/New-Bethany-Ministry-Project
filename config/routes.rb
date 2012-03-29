@@ -12,19 +12,29 @@ NBM::Application.routes.draw do
   match "/report/shower_visit", :to => "report#shower_visit", :as => "report_shower_visit"
   
   match "/search_people", :to => "people#search"
-  match "/search_food_visits", :to => "food_visits#search"
-  match "/pending_food_visits", :to => "food_visits#pending"
-  match "/food_visits/:id/processed", :to => "food_visits#processed", as: "processed_food_visit", via: [:post]
+  match "/search_basket_visits", :to => "basket_visits#search"
+  match "/pending_basket_visits", :to => "basket_visits#pending"
+  match "/basket_visits/:id/processed", :to => "basket_visits#processed", as: "processed_basket_visit", via: [:post]
   
   match "/search_shower_visits", :to => "shower_visits#search"
   match "/pending_shower_visits", :to => "shower_visits#pending"
   match "/shower_visits/:id/processed", :to => "shower_visits#processed", as: "processed_shower_visit", via: [:post]
   
+  match "/search_food_visits", :to => "food_visits#new"
+  match "/pending_food_visits", :to => "food_visits#new"
+  
+  match "/search_other_visits", :to => "other_visits#new"
+  match "/pending_other_visits", :to => "other_visits#new"
+  
   root to: 'people#search'
   
   resources :shower_visits, only: [:new, :edit, :create, :update, :destroy]
 
+  resources :basket_visits, only: [:new, :edit, :create, :update, :destroy]
+
   resources :food_visits, only: [:new, :edit, :create, :update, :destroy]
+  
+  resources :other_visits, only: [:new, :edit, :create, :update, :destroy]
 
   resources :people
 

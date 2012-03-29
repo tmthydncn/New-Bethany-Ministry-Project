@@ -1,0 +1,2 @@
+module OtherVisitsHelper
+end

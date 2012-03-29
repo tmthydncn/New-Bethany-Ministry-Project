@@ -1,0 +1,106 @@
+<%= form_for(@basket_visit, :html => {:class => "form-horizontal"}) do |f| %>
+	<legend>Basket Visit Details</legend>
+  <% if @basket_visit.errors.any? %>
+    <div class="alert alert-error">
+      <h4 class="alert-heading"><%= pluralize(@basket_visit.errors.count, "error") %> prohibited this basket_visit from being saved:</h4>
+
+      <ul>
+      <% @basket_visit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	
+	<% if @basket_visit.person_id.nil? %>
+		<%= f.hidden_field :person_id , :value => @person.id %>
+	<% else %>
+		<%= f.hidden_field :person_id , :value => @basket_visit.person_id %>
+	<% end %>
+	
+	<div class="control-group">
+		<%= f.label :person_name, :class => "control-label" %>
+		<div class="controls">
+			
+			<% if @basket_visit.person_id.nil? %>	
+				<%= f.text_field :person_name, :disabled => true, :value => @person.full_name, :class => "input-xlarge" %>
+			<% else %>
+				<%= f.text_field :person_name, :disabled => true, :value => @basket_visit.owners_full_name, :class => "input-xlarge" %>
+			<% end %>
+			
+		</div>
+	</div>
+	
+
+  <div class="control-group">
+    <%= f.label :order_number, :class => "control-label" %>
+    <div class="controls">		
+		<% if @next_order.nil? %>
+		   <%= f.number_field :order_number, :class => "input-xlarge" %>
+			<span class="help-inline">There was no previous order</span>
+		<% else %>
+    	<%= f.number_field :order_number, :value => @next_order, :class => "input-xlarge" %>
+			<span class="help-inline">The previous order was numbered <%= @prev_order %></span>
+		<% end %>
+		</div>
+  </div>
+  <div class="control-group">
+    <%= f.label :food_in, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.select :food_in, BasketVisit::FOOD_IN_TYPES, :class => "input-xlarge" %>
+		</div>
+  </div>
+  <div class="control-group">
+    <%= f.label :number_of_adults, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.select :number_of_adults, BasketVisit::NUMBER_OF_PEOPLE_TYPES, :class => "input-xlarge" %>
+		</div>
+  </div>
+  <div class="control-group">
+    <%= f.label :number_of_children, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.select :number_of_children, BasketVisit::NUMBER_OF_PEOPLE_TYPES, :class => "input-xlarge" %>
+		</div>
+  </div>
+  <div class="control-group">
+    <%= f.label :number_of_elderly, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.select :number_of_elderly, BasketVisit::NUMBER_OF_PEOPLE_TYPES,  :class => "input-xlarge" %>
+		</div>
+  </div>
+  <div class="control-group">
+    <%= f.label :special_needs, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.text_area :special_needs, :size => "20x10", :class => "input-xlarge" %>
+		</div>
+  </div>
+	<legend>Status Details</legend>
+  <div class="control-group">
+    <%= f.label :status, :class => "control-label" %>
+    <div class="controls">		
+    <%= f.select :status, BasketVisit::STATUS_TYPES, :class => "input-xlarge" %>
+		</div>
+  </div>
+	<% unless @basket_visit.user_id.nil? %>
+	<div class="control-group">
+		<%= f.label :created_by, :class => "control-label" %>
+		<div class="controls">
+				<%= f.text_field :created_by, :disabled => true, :value => @basket_visit.user.name, :class => "input-xlarge" %>
+
+		</div>
+	</div>
+<div class="control-group">
+		<%= f.label "Date Created", :class => "control-label" %>
+		<div class="controls">
+				<%= f.text_field "Date Created", :disabled => true, :value => @basket_visit.created_at, :class => "input-xlarge" %>
+
+		</div>
+	</div>
+	<% end %>
+
+  <div class="form-actions">
+    <%= f.submit :class => "btn btn-primary" %>
+		<%= link_to "Cancel", pending_basket_visits_path,  :class => "btn" %>
+  </div>
+<% end %>

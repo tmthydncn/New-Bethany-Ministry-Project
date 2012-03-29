@@ -4,11 +4,7 @@
   <tr>
 		<th>Person</th>
     <th>Order number</th>
-    <th>Food in</th>
-    <th>Number of adults</th>
-    <th>Number of children</th>
-    <th>Number of elderly</th>
-    <th>Special needs</th>
+
     <th></th>
     <th></th>
     <th></th>
@@ -18,11 +14,6 @@
   <tr>
 		<td><%= food_visit.owners_full_name %>
     <td><%= food_visit.order_number %></td>
-    <td><%= food_visit.food_in %></td>
-    <td><%= food_visit.number_of_adults %></td>
-    <td><%= food_visit.number_of_children %></td>
-    <td><%= food_visit.number_of_elderly %></td>
-    <td><%= food_visit.special_needs %></td>
     <td><%= link_to 'Show', food_visit %></td>
     <td><%= link_to 'Edit', edit_food_visit_path(food_visit) %></td>
     <td><%= link_to 'Destroy', food_visit, confirm: 'Are you sure?', method: :delete %></td>

@@ -30,8 +30,10 @@
     <td><%= person.gender %></td>
     <td><%= person.formatted_ssn %></td>
     <td><%= person.date_of_birth %></td>
-		<td><%= link_to 'View Food Visits', search_food_visits_path(person_id: person), :class => "btn  btn-mini" %>
-		<%= link_to 'View Shower Visits', search_shower_visits_path(person_id: person), :class => "btn  btn-mini" %></td>
+		<td><%= link_to 'View Basket Visits', search_basket_visits_path(person_id: person), :class => "btn  btn-mini" %>
+		<%= link_to 'View Shower Visits', search_shower_visits_path(person_id: person), :class => "btn  btn-mini" %>
+		<%= link_to 'View Food Visits', search_food_visits_path(person_id: person), :class => "btn  btn-mini" %>
+		<%= link_to 'View Other Visits', search_other_visits_path(person_id: person), :class => "btn  btn-mini" %></td>
     <td><%= link_to 'Show', person, :class => "btn btn-mini btn-info" %>
         <%= link_to 'Edit', edit_person_path(person), :class => "btn btn-mini" %>
         <%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %></td>
