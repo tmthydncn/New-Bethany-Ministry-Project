@@ -21,6 +21,8 @@ class ShowerVisit < ActiveRecord::Base
   belongs_to :user
   validates :person, :presence => true
   validates_presence_of :order_number
+  validates_numericality_of :order_number, :greater_than_or_equal_to => 0
+  
   
   attr_protected :user_id
   

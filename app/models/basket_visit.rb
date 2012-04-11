@@ -23,6 +23,7 @@ class BasketVisit < ActiveRecord::Base
   validates :person_id, :presence => true
   validates :user_id, presence: true
   validates_numericality_of :number_of_adults, :greater_than => 0
+  validates_numericality_of :order_number, :greater_than_or_equal_to => 0
   validates_presence_of :order_number
   
   attr_protected :user_id
