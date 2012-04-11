@@ -1,4 +1,4 @@
-set :default_environment, { 'PATH' => "'/usr/kerberos/sbin:/usr/local/rvm/gems/ruby-1.9.3-p125/bin:/usr/local/rvm/gems/ruby-1.9.3-p125@global/bin:/usr/local/rvm/rubies/ruby-1.9.3-p125/bin:/usr/local/rvm/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/newbethany/bin'" }
+set :default_environment, { 'PATH' => "'/usr/kerberos/sbin:/usr/local/rvm/gems/ruby-1.9.3-p125/bin:/usr/local/rvm/gems/ruby-1.9.3-p125@global/bin:/usr/local/rvm/rubies/default/bin:/usr/local/rvm/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/newbethany/bin'" }
 #$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 #require "rvm/capistrano"
