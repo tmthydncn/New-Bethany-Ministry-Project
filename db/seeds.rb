@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.delete_all 
+#User.delete_all 
 
 
 User.create(name: "Maytee Chinavam2", 
@@ -14,6 +14,14 @@ email: "chinavam2@lafayette.edu",
 #remember_token: "2ga59vUVmmAI09SMwR8dMQ", 
 password:"123456",
 password_confirmation: "123456")
+
+User.create(name: "Administrator", 
+email: "admin@newbethanyministries.org", 
+#password_digest: "$2a$10$VLGsuoNKMGqwwqB4QvbLeuH1nd2B/9ddUn6oXISzuUVj301TcSNVq", 
+#remember_token: "2ga59vUVmmAI09SMwR8dMQ", 
+password:"nBM2011",
+password_confirmation: "nBM2011",
+admin: true)
 
 User.create(name: "Maytee Chinavam", 
 email: "chinavam@lafayette.edu", 

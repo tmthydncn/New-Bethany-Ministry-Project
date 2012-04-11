@@ -20,9 +20,9 @@
   <tr>
 		<td><%= simple_format shower_visit.updated_time_with_count %></td>
     <td><%= shower_visit.order_number %></td>
-    <td><%= shower_visit.soap %></td>
-    <td><%= shower_visit.towel %></td>
-    <td><%= shower_visit.shampoo %></td>
+    <td><%= shower_visit.soap ? "Yes" : "No" %></td>
+    <td><%= shower_visit.towel ? "Yes" : "No" %></td>
+    <td><%= shower_visit.shampoo ? "Yes" : "No" %></td>
     <td><%= shower_visit.other %></td>
     <td><%= link_to 'Edit', edit_shower_visit_path(shower_visit), :class => 'btn btn-mini'%>
 					<%= link_to 'Destroy', shower_visit, confirm: 'Are you sure?', method: :delete, :class => 'btn  btn-mini btn-danger' %></td>
