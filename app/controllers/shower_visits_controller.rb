@@ -29,7 +29,7 @@ class ShowerVisitsController < ApplicationController
   # GET /shower_visits/new.json
   def new
       @next_order = ShowerVisit.find(:first, :order => "updated_at desc")
-      if @next_order.nil? 
+      if @next_order.nil?  or @next_order.order_number.nil?
         @next_order = nil
       else
         @prev_order = @next_order.order_number
@@ -94,7 +94,7 @@ class ShowerVisitsController < ApplicationController
     @shower_visit.destroy
 
     respond_to do |format|
-      format.html { redirect_to shower_visits_url }
+      format.html { redirect_to pending_shower_visits_path }
       format.json { head :no_content }
     end
   end

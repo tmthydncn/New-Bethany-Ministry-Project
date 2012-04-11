@@ -27,7 +27,7 @@ class FoodVisitsController < ApplicationController
   # GET /food_visits/new.json
   def new
     @next_order = FoodVisit.find(:first, :order => "updated_at desc")
-    if @next_order.nil? 
+    if @next_order.nil?  or @next_order.order_number.nil?
       @next_order = nil
     else
       @prev_order = @next_order.order_number
@@ -92,7 +92,7 @@ class FoodVisitsController < ApplicationController
     @food_visit.destroy
 
     respond_to do |format|
-      format.html { redirect_to food_visits_url }
+      format.html { redirect_to pending_food_visits_path }
       format.json { head :no_content }
     end
   end

@@ -27,7 +27,7 @@ class OtherVisitsController < ApplicationController
   # GET /other_visits/new.json
   def new
     @next_order = OtherVisit.find(:first, :order => "updated_at desc")
-     if @next_order.nil? 
+     if @next_order.nil? or @next_order.order_number.nil?
        @next_order = nil
      else
        @prev_order = @next_order.order_number
@@ -91,7 +91,7 @@ class OtherVisitsController < ApplicationController
     @other_visit.destroy
 
     respond_to do |format|
-      format.html { redirect_to other_visits_url }
+      format.html { redirect_to pending_other_visits_path }
       format.json { head :no_content }
     end
   end
