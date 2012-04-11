@@ -9,7 +9,7 @@ class OtherVisit < ActiveRecord::Base
   
   attr_protected :user_id
     
-  OTHER_VISIT_TYPES = [ "Type 1", "Type 2"]
+  OTHER_VISIT_TYPES = [ "Bus Vouchers","Case Representation","Address Use" ]
   STATUS_TYPES = [ "Pending", "Completed", "Canceled"]
   
   def owners_full_name

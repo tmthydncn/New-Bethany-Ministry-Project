@@ -26,6 +26,13 @@ class OtherVisitsController < ApplicationController
   # GET /other_visits/new
   # GET /other_visits/new.json
   def new
+    @next_order = OtherVisit.find(:first, :order => "updated_at desc")
+     if @next_order.nil? 
+       @next_order = nil
+     else
+       @prev_order = @next_order.order_number
+       @next_order = @prev_order + 1
+     end
     @other_visit = OtherVisit.new
     @person = current_person
     if @person.nil?
@@ -47,7 +54,6 @@ class OtherVisitsController < ApplicationController
   # POST /other_visits
   # POST /other_visits.json
   def create
-
     @other_visit = OtherVisit.new(params[:other_visit])
     @other_visit.user_id = current_user.id
     respond_to do |format|
