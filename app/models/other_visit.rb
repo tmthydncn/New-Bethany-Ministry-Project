@@ -11,5 +11,14 @@ class OtherVisit < ActiveRecord::Base
     
   OTHER_VISIT_TYPES = [ "Type 1", "Type 2"]
   STATUS_TYPES = [ "Pending", "Completed", "Canceled"]
+  
+  def owners_full_name
+    person.full_name
+  end
+  
+  def updated_time_with_count
+    time = self.created_at.strftime("%b %d, %Y at %H:%M")
+    time << "\n#{time_ago_in_words(self.created_at) } ago"
+  end
     
 end

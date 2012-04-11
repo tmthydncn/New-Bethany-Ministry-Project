@@ -91,6 +91,46 @@ class OtherVisitsController < ApplicationController
   end
   
   
+  def search
+    @person = current_person
+    if @person.nil?
+      flash[:error] = "Unable to search with no person"
+      redirect_to :action=>"index", :controller=>"shower_visits"
+      return
+    end
+
+    @other_visits = OtherVisit.paginate(:page => params[:page], :per_page => 10, :conditions => ["person_id = ?", current_person.id], :order => 'updated_at DESC')
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @other_visits }
+    end
+  end   
+
+  def pending
+    @other_visits = OtherVisit.find_all_by_status(OtherVisit::STATUS_TYPES[0])
+    @other_visits_old = OtherVisit.find(:all, :limit => 10, :conditions => ["status != ?",OtherVisit::STATUS_TYPES[0]], order: 'other_visits.created_at DESC')
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @other_visits }
+    end
+  end
+  
+  
+  def processed
+    other_visit = OtherVisit.find(params[:id])
+
+    respond_to do |format|
+      if other_visit.update_attribute :status, OtherVisit::STATUS_TYPES[1]
+        flash[:success] = "Other Visit marked as completed."
+        format.html { redirect_to pending_other_visits_path }
+      else
+        flash[:error] = "Unable to mark Other Visit as completed."
+        format.html { redirect_to pending_other_visits_path }
+      end
+      format.json { head :no_content }
+    end
+  end
+  
   
   
 

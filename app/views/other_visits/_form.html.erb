@@ -33,6 +33,19 @@
 	</div>
 	
 	<div class="control-group">
+    <%= f.label :order_number, :class => "control-label" %>
+    <div class="controls">		
+		<% if @next_order.nil? %>
+		   <%= f.number_field :order_number, :class => "input-xlarge" %>
+			<span class="help-inline">There was no previous order</span>
+		<% else %>
+    	<%= f.number_field :order_number, :value => @next_order, :class => "input-xlarge" %>
+			<span class="help-inline">The previous order was numbered <%= @prev_order %></span>
+		<% end %>
+		</div>
+  </div>
+	
+	<div class="control-group">
 		<%= f.label :visit_type, :class => "control-label" %>
 		<div class="controls">
 			<%= f.select :visit_type, OtherVisit::OTHER_VISIT_TYPES, :class => "input-xlarge"%>

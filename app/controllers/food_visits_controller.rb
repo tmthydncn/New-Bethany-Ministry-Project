@@ -98,6 +98,47 @@ class FoodVisitsController < ApplicationController
   end
   
   
+  def search
+    @person = current_person
+    if @person.nil?
+      flash[:error] = "Unable to search with no person"
+      redirect_to :action=>"index", :controller=>"shower_visits"
+      return
+    end
+
+    @food_visits = FoodVisit.paginate(:page => params[:page], :per_page => 10, :conditions => ["person_id = ?", current_person.id], :order => 'updated_at DESC')
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @food_visits }
+    end
+  end   
+
+  def pending
+    @food_visits = FoodVisit.find_all_by_status(FoodVisit::STATUS_TYPES[0])
+    @food_visits_old = FoodVisit.find(:all, :limit => 10, :conditions => ["status != ?",FoodVisit::STATUS_TYPES[0]], order: 'food_visits.created_at DESC')
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @food_visits }
+    end
+  end
+  
+  
+  def processed
+    food_visit = FoodVisit.find(params[:id])
+
+    respond_to do |format|
+      if food_visit.update_attribute :status, FoodVisit::STATUS_TYPES[1]
+        flash[:success] = "Food Visit marked as completed."
+        format.html { redirect_to pending_food_visits_path }
+      else
+        flash[:error] = "Unable to mark Food Visit as completed."
+        format.html { redirect_to pending_food_visits_path }
+      end
+      format.json { head :no_content }
+    end
+  end
+  
+  
   private
     
     def title

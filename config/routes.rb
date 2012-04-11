@@ -20,11 +20,13 @@ NBM::Application.routes.draw do
   match "/pending_shower_visits", :to => "shower_visits#pending"
   match "/shower_visits/:id/processed", :to => "shower_visits#processed", as: "processed_shower_visit", via: [:post]
   
-  match "/search_food_visits", :to => "food_visits#new"
-  match "/pending_food_visits", :to => "food_visits#new"
+  match "/search_food_visits", :to => "food_visits#search"
+  match "/pending_food_visits", :to => "food_visits#pending"  
+  match "/food_visits/:id/processed", :to => "food_visits#processed", as: "processed_food_visit", via: [:post]
   
-  match "/search_other_visits", :to => "other_visits#new"
-  match "/pending_other_visits", :to => "other_visits#new"
+  match "/search_other_visits", :to => "other_visits#search"
+  match "/pending_other_visits", :to => "other_visits#pending"
+  match "/other_visits/:id/processed", :to => "other_visits#processed", as: "processed_other_visit", via: [:post]
   
   root to: 'people#search'
   
