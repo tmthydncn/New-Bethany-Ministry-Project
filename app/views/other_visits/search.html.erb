@@ -1,0 +1,29 @@
+<h1>Listing Other Visits for <%= @person.full_name%></h1>
+<br />
+<h6><%= link_to 'Create a new Other visit', new_other_visit_path(person_id: @person), :class => "btn" %>
+</h6><br />
+<% if @other_visits.nil? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+<table class="table table-striped">
+  <tr>
+		<th>Date</th>
+    <th>Order number</th>
+		<th>Visit Type</th>
+    <th></th>
+
+  </tr>
+
+<% @other_visits.each do |other_visit| %>
+  <tr>
+		<td><%= simple_format other_visit.updated_time_with_count %></td>
+    <td><%= other_visit.order_number %></td>
+		<td><%= other_visit.visit_type %></td>
+    <td><%= link_to 'Edit', edit_other_visit_path(other_visit), :class => 'btn btn-mini'%>
+					<%= link_to 'Destroy', other_visit, confirm: 'Are you sure?', method: :delete, :class => 'btn  btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @other_visits %>
+<% end %>
+

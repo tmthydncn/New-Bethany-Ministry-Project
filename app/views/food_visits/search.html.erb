@@ -1,0 +1,30 @@
+<h1>Listing Food Visits for <%= @person.full_name%></h1>
+<br />
+<h6><%= link_to 'Create a new Food visit', new_food_visit_path(person_id: @person), :class => "btn" %>
+</h6><br />
+<% if @food_visits.nil? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+<table class="table table-striped">
+  <tr>
+		<th>Date</th>
+    <th>Order number</th>
+		<th>Person</th>
+
+    <th></th>
+
+  </tr>
+
+<% @food_visits.each do |food_visit| %>
+  <tr>
+		<td><%= simple_format food_visit.updated_time_with_count %></td>
+    <td><%= food_visit.order_number %></td>
+    <td><%= food_visit.person %></td>
+    <td><%= link_to 'Edit', edit_food_visit_path(food_visit), :class => 'btn btn-mini'%>
+					<%= link_to 'Destroy', food_visit, confirm: 'Are you sure?', method: :delete, :class => 'btn  btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @food_visits %>
+<% end %>
+

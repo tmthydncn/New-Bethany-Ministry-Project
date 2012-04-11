@@ -1,0 +1,53 @@
+<h1>Pending Other Visits</h1>
+<% if @other_visits.nil? or @other_visits.empty? %>
+	<blockquote>There are no pending other visits</blockquote>
+<% else %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Order</th>
+		<th>Person</th>
+		<th>Visit Type</th>
+    <th>Action</th>
+
+  </tr>
+
+<% @other_visits.each do |other_visit| %>
+  <tr>
+    <td><%= other_visit.order_number %></td>
+		<td><%= link_to other_visit.owners_full_name, search_other_visits_path(:person_id => other_visit.person)  %>
+		<td><%= other_visit.visit_type %></td>
+    <td><%= link_to 'Completed', processed_other_visit_path(other_visit), :class => "btn btn-mini btn-success", :method => :post %>
+	<%= link_to "Edit", edit_other_visit_path(other_visit), :class => "btn btn-mini" %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+<br />
+
+<h1>Recently Completed or Canceled</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Order</th>
+		<th>Person</th>
+		<th>Status</th>
+		<th>Visit Type</th>
+    <th>Action</th>
+
+  </tr>
+
+<% @other_visits_old.each do |other_visit| %>
+  <tr>
+    <td><%= other_visit.order_number %></td>
+		<td><%= link_to other_visit.owners_full_name, other_visit.person %>
+		<td><%= other_visit.status %></td>
+		<td><%= other_visit.visit_type %></td>
+		<td><%= link_to "Edit", edit_other_visit_path(other_visit), :class => "btn btn-mini" %>
+			<%= link_to 'Destroy', other_visit, confirm: 'Are you sure?', method: :delete, :class => 'btn  btn-mini btn-danger' %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
