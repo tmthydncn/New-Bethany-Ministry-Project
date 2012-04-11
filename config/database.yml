@@ -20,7 +20,8 @@ test:
 
 production:
   adapter: postgresql
-  database: db/production.sqlite3
+  database: nbm
   username: postgres
+  password: NBM2001a
   pool: 5
   timeout: 5000

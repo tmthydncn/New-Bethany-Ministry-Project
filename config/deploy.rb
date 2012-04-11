@@ -1,4 +1,4 @@
-
+require "bundler/capistrano"
 set :application, "NewBethanyMinistry"
 set :repository,  "git@github.com:chickensen/New-Bethany-Ministry-Project.git"
 
