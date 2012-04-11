@@ -47,7 +47,15 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    params[:person][:date_of_birth] = Date.strptime(params[:person][:date_of_birth], '%Y-%m-%d')
+    begin
+      params[:person][:date_of_birth] = Date.strptime(params[:person][:date_of_birth], '%Y-%m-%d')
+    rescue
+      begin
+        params[:person][:date_of_birth] = Date.strptime(params[:person][:date_of_birth], '%B %d, %Y')
+      rescue
+        params[:person][:date_of_birth] = nil
+      end
+    end
     @person = Person.new(params[:person])
     @person.user_id = current_user.id
 
