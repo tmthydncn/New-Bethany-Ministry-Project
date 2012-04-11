@@ -1,12 +1,14 @@
 set :default_environment, { 'PATH' => "'/usr/kerberos/sbin:/usr/local/rvm/gems/ruby-1.9.3-p125/bin:/usr/local/rvm/gems/ruby-1.9.3-p125@global/bin:/usr/local/rvm/rubies/ruby-1.9.3-p125/bin:/usr/local/rvm/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/newbethany/bin'" }
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+#$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 require "rvm/capistrano"
 
 load 'deploy/assets'
-set :rvm_ruby_string, '1.9.2'
+set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :user  # Don't use system-wide RVM
 require "bundler/capistrano"
+
+
 set :application, "NewBethanyMinistry"
 set :repository,  "git@github.com:chickensen/New-Bethany-Ministry-Project.git"
 
