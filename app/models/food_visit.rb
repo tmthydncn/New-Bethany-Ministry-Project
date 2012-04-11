@@ -6,6 +6,7 @@ class FoodVisit < ActiveRecord::Base
   belongs_to :user
   validates :person_id, :presence => true
   validates :user_id, presence: true
+    validates_presence_of :order_number
   
   attr_protected :user_id
   

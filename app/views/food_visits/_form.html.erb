@@ -34,7 +34,7 @@
 	
 
   <div class="control-group">
-    <%= f.label :order_number, :class => "control-label" %>
+    <%= f.label :order_number, "Order number *", :class => "control-label" %>
     <div class="controls">		
 		<% if @next_order.nil? %>
 		   <%= f.number_field :order_number, :class => "input-xlarge" %>
