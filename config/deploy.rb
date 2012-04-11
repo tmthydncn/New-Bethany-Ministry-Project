@@ -36,3 +36,8 @@ role :db,  "50.63.147.117", :primary => true # This is where Rails migrations wi
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+namespace :deploy do
+  task :restart do
+    sudo "/etc/init.d/nginx restart"
+  end
+end

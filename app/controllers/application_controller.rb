@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     
     def admin_user
       if !current_user.admin?
-        flash[:error] = "You do no have administrator privilages"
+        flash[:error] = "You do no have administrator privileges"
         redirect_to(root_path)
       end
     end

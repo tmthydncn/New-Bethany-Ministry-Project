@@ -34,7 +34,7 @@
 	
 
   <div class="control-group">
-    <%= f.label :order_number, :class => "control-label" %>
+    <%= f.label :order_number, "Order Number *", :class => "control-label" %>
     <div class="controls">		
 		<% if @next_order.nil? %>
 		   <%= f.number_field :order_number, :class => "input-xlarge" %>
@@ -52,7 +52,7 @@
 		</div>
   </div>
   <div class="control-group">
-    <%= f.label :number_of_adults, :class => "control-label" %>
+    <%= f.label :number_of_adults, "Number of adults *", :class => "control-label" %>
     <div class="controls">		
     <%= f.select :number_of_adults, BasketVisit::NUMBER_OF_PEOPLE_TYPES, :class => "input-xlarge" %>
 		</div>

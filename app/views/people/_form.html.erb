@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :first_name, :class => "control-label"%>
+    <%= f.label :first_name, "First Name *", :class => "control-label"%>
 		<div class="controls">
     <%= f.text_field :first_name, :class => "input-xlarge" %>
 		</div>
@@ -24,7 +24,7 @@
 		</div>
   </div>
   <div class="control-group">
-    <%= f.label :last_name, :class => "control-label"%>
+    <%= f.label :last_name, "Last Name *", :class => "control-label"%>
 		<div class="controls">
     <%= f.text_field :last_name, :class => "input-xlarge" %>
 		</div>
@@ -36,13 +36,13 @@
 		</div>
   </div>
   <div class="control-group">
-    <%= f.label :ssn, :class => "control-label"%>
+    <%= f.label :ssn, "Social security number *", :class => "control-label"%>
 		<div class="controls">
     <%= f.text_field :ssn, :class => "input-xlarge" %>
 		</div>
   </div>
   <div class="control-group">
-    <%= f.label :date_of_birth, :class => "control-label"%>
+    <%= f.label :date_of_birth, "Date of birth *", :class => "control-label"%>
 		<div class="controls">
 			<%= f.text_field(:date_of_birth, :placeholder => "Pick a birth date", :class => "input-xlarge")%>
 		</div>
@@ -104,7 +104,7 @@
 		</div>
   </div>
   <div class="control-group">
-    <%= f.label :people_in_house, :class => "control-label"%>
+    <%= f.label :people_in_house, "People in house *", :class => "control-label"%>
 		<div class="controls">
     <%= f.number_field :people_in_house, :class => "input-xlarge" %>
 		</div>
@@ -113,7 +113,7 @@
   <div class="row">
       <div class="span6">
   			<div class="control-group">
-			    <%= f.label :employment_income, :class => "control-label"%>
+			    <%= f.label :employment_income, "Employment income", :class => "control-label"%>
 					<div class="controls">
 			    <%= f.number_field :employment_income, :class => "input-xlarge" %>
 					</div>
@@ -121,7 +121,7 @@
 			</div>
 			<div class="span6">
   			<div class="control-group">
-			    <%= f.label :ssi, :class => "control-label"%>
+			    <%= f.label :ssi, "Ssi *", :class => "control-label"%>
 					<div class="controls">
 			    <%= f.number_field :ssi, :class => "input-xlarge" %>
 					</div>
@@ -131,7 +131,7 @@
 	<div class="row">
       <div class="span6">
   			<div class="control-group">
-			    <%= f.label :ssd, :class => "control-label"%>
+			    <%= f.label :ssd, "Ssd *", :class => "control-label"%>
 					<div class="controls">
 			    <%= f.number_field :ssd, :class => "input-xlarge" %>
 					</div>
@@ -139,7 +139,7 @@
 			</div>
 			<div class="span6">
 			  <div class="control-group">
-			    <%= f.label :child_support, :class => "control-label"%>
+			    <%= f.label :child_support, "Child support *", :class => "control-label"%>
 					<div class="controls">
 			    <%= f.number_field :child_support, :class => "input-xlarge" %>
 					</div>
@@ -149,7 +149,7 @@
 	<div class="row">
       <div class="span6">
 			  <div class="control-group">
-			    <%= f.label :food_stamps, :class => "control-label"%>
+			    <%= f.label :food_stamps, "Food stamps *", :class => "control-label"%>
 					<div class="controls">
 			    <%= f.number_field :food_stamps, :class => "input-xlarge" %>
 					</div>
@@ -157,7 +157,7 @@
 			</div>
 			<div class="span6">
 			  <div class="control-group">
-			    <%= f.label :welfare, :class => "control-label"%>
+			    <%= f.label :welfare, "Welfare *", :class => "control-label"%>
 					<div class="controls">
 			    <%= f.number_field :welfare, :class => "input-xlarge" %>
 					</div>
