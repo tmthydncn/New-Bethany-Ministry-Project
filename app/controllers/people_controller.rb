@@ -97,7 +97,7 @@ class PeopleController < ApplicationController
     query.each_with_index do |q, index|
       q = q.downcase
       queries << "lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR CAST(ssn AS TEXT) LIKE ? "
-      vars << (q << '%') << q << q
+      vars << (q << '%') << q << ('%' + q.gsub(/[-]/, '') + '%')
     end
   
       @people = Person.paginate :page => params[:page], :per_page => 5, :conditions =>[queries.join(' OR '), vars].flatten, :order => "lower(first_name), lower(last_name), ssn"
