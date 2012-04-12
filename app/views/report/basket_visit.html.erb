@@ -1,0 +1,53 @@
+<h1>Generate Basket Visits Report</h1>
+<div class="row">
+<%= form_tag(report_basket_visit_path, :method => :get, :class => "well form-search span12") do %>
+	<span class="span4">
+  <%= label_tag(:start_date, "Start Date:") %>
+  <%= text_field_tag(:start_date, params[:start_date], :placeholder => "Pick a starting date")%>
+	</span><span class="span4">
+	<%= label_tag(:end_date, "End Date:") %>
+  <%= text_field_tag(:end_date, params[:end_date], :placeholder => "Pick an ending date")%>
+	</span>
+  <%= submit_tag("Search", :class => "btn") %>
+<% end %>
+</div>
+
+<h3>Report</h3>
+<h5><%= @query_humanized unless @query_humanized.nil? %></h5>
+<% if @basket_visits.nil? or @basket_visits.empty? %>
+	<blockquote>Search returned zero results</blockquote>
+<% else %>
+
+<table class="table table-striped">
+	  <tr>
+			<th>Date</th>
+	    <th>Number of adults</th>
+	    <th>Number of children</th>
+	    <th>Number of elderly</th>
+	  </tr>
+	<% day = 0 %>
+	<% number_of_adults = 0 %>
+	<% number_of_children = 0 %>
+	<% number_of_elderly = 0 %>	
+	<% @basket_visits.each do |basket_visit| %>
+	  <tr>
+			<td><%= basket_visit.created_at.to_date %></td>
+	    <td><% number_of_adults += basket_visit.number_of_adults %>
+				<%= basket_visit.number_of_adults %></td>
+	    <td><% number_of_children += basket_visit.number_of_children %>
+				<%= basket_visit.number_of_children %></td>
+	    <td><% number_of_elderly += basket_visit.number_of_elderly %>
+				<%= basket_visit.number_of_elderly %></td>
+	  </tr>
+		<% day += 1 %>
+	<% end %>
+	<tr>
+		<th>Total of active <%= pluralize(day, "day") %></th>
+    <th><%= number_of_adults %></th>
+    <th><%= number_of_children %></th>
+    <th><%= number_of_elderly %></th>
+  </tr>
+	</table>
+	<% end %>
+
+	
